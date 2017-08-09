@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author MIGUEL
  */
 public class Login extends javax.swing.JFrame {
-
+    //Holi esto es una prueba agregada por Oscar
     ArrayList<users> usuarios = new ArrayList<>(); 
     String usrn, pass;
     boolean unoRegistrado = false;
