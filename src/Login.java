@@ -10,7 +10,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author MIGUEL
+ * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
+ * @version 1.0
  */
 public class Login extends javax.swing.JFrame {
 
@@ -183,6 +184,7 @@ public class Login extends javax.swing.JFrame {
     private void regrBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regrBtnActionPerformed
         // TODO add your handling code here:
         loginLbl.setText("Registrar");
+        borrarTxt();
         vlnBtn.setVisible(false);
         regrBtn.setVisible(false);
         addBtn.setVisible(true);
@@ -231,12 +233,17 @@ public class Login extends javax.swing.JFrame {
     private void rgrLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rgrLblMouseClicked
         // TODO add your handling code here:
         loginLbl.setText("Login");
+        borrarTxt();
         vlnBtn.setVisible(true);
         regrBtn.setVisible(true);
         addBtn.setVisible(false);
         rgrLbl.setVisible(false);
     }//GEN-LAST:event_rgrLblMouseClicked
 
+    private void borrarTxt(){
+        UserTF.setText("");
+        clavePF.setText("");
+    }
     /* public void yaExiste(ArrayList<users> usrs){
         for (users recorredor : usrs) {
             if (usrn.equals(recorredor.getUsuario())){ 
