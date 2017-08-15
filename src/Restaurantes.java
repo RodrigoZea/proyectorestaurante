@@ -46,7 +46,7 @@ public class Restaurantes extends javax.swing.JFrame {
         restLbl.setText("Seleccione su restaurante:");
 
         ggLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ggLbl.setText("Go Green");
+        ggLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gGreen.png"))); // NOI18N
         ggLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ggLblMouseClicked(evt);
@@ -82,17 +82,17 @@ public class Restaurantes extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(206, 206, 206)
-                .addComponent(restLbl)
-                .addContainerGap(209, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ggLbl)
                     .addComponent(cgLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
                 .addComponent(pnLbl)
                 .addGap(113, 113, 113))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(206, 206, 206)
+                .addComponent(restLbl)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(407, Short.MAX_VALUE)
@@ -106,7 +106,7 @@ public class Restaurantes extends javax.swing.JFrame {
                 .addComponent(restLbl)
                 .addGap(99, 99, 99)
                 .addComponent(ggLbl)
-                .addGap(84, 84, 84)
+                .addGap(147, 147, 147)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pnLbl)
                     .addComponent(cgLbl))
