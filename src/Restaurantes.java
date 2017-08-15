@@ -160,29 +160,38 @@ public class Restaurantes extends javax.swing.JFrame {
         int opt = x;
         switch(opt){
             case 1:  
-              nombre = ggLbl.getText();  
+              nombre = "Go Green";  
               descripcion = "Provee una variedad de alimentos más saludables que los de otros restaurantes";
               horario = "10 AM - 3:30 PM";
               break;
             case 2:
-              nombre = bbLbl.getText();    
+              nombre = "Bagel Bros";    
               descripcion = "Ofrece sandwiches de tipo Bagel, los cuales pueden ser una alternativa a sandwiches normales";
               horario = "8:30 AM - 2:00 PM";
               break;
             case 3:
-              nombre = cgLbl.getText();    
+              nombre = "Café Gitane";    
               descripcion = "Ofrece meriendas simples para un receso o una variedad de almuerzos";
               horario = "6:30 AM - 5:00 PM";
               break;
             case 4:
-              nombre = pnLbl.getText();    
+              nombre = "Picnic";   
               descripcion = "Ofrece opciones de comida más caseras y tradicionales que otros restaurantes";  
               horario = "7 AM - 3:00 PM";
               break;
         }
         
-        JOptionPane.showConfirmDialog(null, descripcion + "\n" + "Horario: " + horario, nombre, JOptionPane.YES_NO_OPTION);
-       
+        //JOptionPane.showConfirmDialog(null, descripcion + "\n" + "Horario: " + horario, nombre, JOptionPane.YES_NO_OPTION);
+        
+        if (JOptionPane.showConfirmDialog(null, (descripcion + "\n" + "Horario: " + horario), (nombre),
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            // yes option
+            Menu menu = new Menu(opt);
+            menu.show();
+            this.hide();
+        } else {
+            // no option
+        }
     }
     
     

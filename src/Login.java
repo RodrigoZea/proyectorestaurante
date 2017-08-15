@@ -18,7 +18,7 @@ public class Login extends javax.swing.JFrame {
     ArrayList<users> usuarios = new ArrayList<>(); 
     String usrn, pass;
     boolean unoRegistrado = false;
-    boolean exists, cuentaE;
+    boolean exists, cuentaE, nv;
     /**
      * Creates new form Login
      */
@@ -207,12 +207,14 @@ public class Login extends javax.swing.JFrame {
         pass = clavePF.getText();
        
         try{ 
+
         if (unoRegistrado = false){
-           users usr1 = new users(usrn, pass);
-           usuarios.add(usr1);
+             users usr1 = new users(usrn, pass);
+             usuarios.add(usr1);
            
-           JOptionPane.showMessageDialog(null, "Éxito", "Usuario Agregado", JOptionPane.INFORMATION_MESSAGE); 
-           unoRegistrado = true;
+             JOptionPane.showMessageDialog(null, "Éxito", "Usuario Agregado", JOptionPane.INFORMATION_MESSAGE); 
+             unoRegistrado = true;  
+ 
         }else{ 
             for (int i = 0; i < usuarios.size(); i++) {
                 if (usuarios.get(i).getUsuario().equals(usrn)) {
