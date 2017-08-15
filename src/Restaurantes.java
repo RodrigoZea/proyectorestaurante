@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,10 +10,11 @@
 
 /**
  *
- * @author MIGUEL
+ * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
+ * @version 1.0
  */
 public class Restaurantes extends javax.swing.JFrame {
-
+    String descripcion, horario, nombre;
     /**
      * Creates new form Restaurantes
      */
@@ -26,22 +31,162 @@ public class Restaurantes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        restLbl = new javax.swing.JLabel();
+        ggLbl = new javax.swing.JLabel();
+        cgLbl = new javax.swing.JLabel();
+        bbLbl = new javax.swing.JLabel();
+        pnLbl = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 153));
+
+        restLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        restLbl.setText("Seleccione su restaurante:");
+
+        ggLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ggLbl.setText("Go Green");
+        ggLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ggLblMouseClicked(evt);
+            }
+        });
+
+        cgLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cgLbl.setText("Cafe Gitane");
+        cgLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cgLblMouseClicked(evt);
+            }
+        });
+
+        bbLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bbLbl.setText("Bagel Bros");
+        bbLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bbLblMouseClicked(evt);
+            }
+        });
+
+        pnLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        pnLbl.setText("Picnic");
+        pnLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnLblMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(206, 206, 206)
+                .addComponent(restLbl)
+                .addContainerGap(209, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ggLbl)
+                    .addComponent(cgLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnLbl)
+                .addGap(113, 113, 113))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(407, Short.MAX_VALUE)
+                    .addComponent(bbLbl)
+                    .addGap(101, 101, 101)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(restLbl)
+                .addGap(99, 99, 99)
+                .addComponent(ggLbl)
+                .addGap(84, 84, 84)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pnLbl)
+                    .addComponent(cgLbl))
+                .addContainerGap(160, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(154, 154, 154)
+                    .addComponent(bbLbl)
+                    .addContainerGap(263, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ggLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ggLblMouseClicked
+        // TODO add your handling code here:
+        showDetails(1);
+    }//GEN-LAST:event_ggLblMouseClicked
+
+    private void bbLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbLblMouseClicked
+        // TODO add your handling code here:
+        showDetails(2);
+    }//GEN-LAST:event_bbLblMouseClicked
+
+    private void cgLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cgLblMouseClicked
+        // TODO add your handling code here:
+        showDetails(3);
+    }//GEN-LAST:event_cgLblMouseClicked
+
+    private void pnLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnLblMouseClicked
+        // TODO add your handling code here:
+        showDetails(4);
+    }//GEN-LAST:event_pnLblMouseClicked
+
+    public void showDetails(int x){ 
+        int opt = x;
+        switch(opt){
+            case 1:  
+              nombre = ggLbl.getText();  
+              descripcion = "Provee una variedad de alimentos más saludables que los de otros restaurantes";
+              horario = "10 AM - 3:30 PM";
+              break;
+            case 2:
+              nombre = bbLbl.getText();    
+              descripcion = "Ofrece sandwiches de tipo Bagel, los cuales pueden ser una alternativa a sandwiches normales";
+              horario = "8:30 AM - 2:00 PM";
+              break;
+            case 3:
+              nombre = cgLbl.getText();    
+              descripcion = "Ofrece meriendas simples para un receso o una variedad de almuerzos";
+              horario = "6:30 AM - 5:00 PM";
+              break;
+            case 4:
+              nombre = pnLbl.getText();    
+              descripcion = "Ofrece opciones de comida más caseras y tradicionales que otros restaurantes";  
+              horario = "7 AM - 3:00 PM";
+              break;
+        }
+        
+        JOptionPane.showConfirmDialog(null, descripcion + "\n" + "Horario: " + horario, nombre, JOptionPane.YES_NO_OPTION);
+       
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -78,5 +223,11 @@ public class Restaurantes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bbLbl;
+    private javax.swing.JLabel cgLbl;
+    private javax.swing.JLabel ggLbl;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel pnLbl;
+    private javax.swing.JLabel restLbl;
     // End of variables declaration//GEN-END:variables
 }

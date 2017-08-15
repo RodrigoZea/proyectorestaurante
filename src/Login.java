@@ -90,6 +90,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        rgrLbl.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         rgrLbl.setText("Regresar");
         rgrLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -174,8 +175,12 @@ public class Login extends javax.swing.JFrame {
         
         if (cuentaE == true ){ 
             JOptionPane.showMessageDialog(null, "Verificación completa", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            Restaurantes rest = new Restaurantes();
+            this.hide();
+            rest.show();
         }else{
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
+            
         }
            
        
@@ -204,7 +209,7 @@ public class Login extends javax.swing.JFrame {
         if (unoRegistrado = false){
            users usr1 = new users(usrn, pass);
            usuarios.add(usr1);
-           System.out.println(usuarios.get(0).getUsuario());
+           
            JOptionPane.showMessageDialog(null, "Éxito", "Usuario Agregado", JOptionPane.INFORMATION_MESSAGE); 
            unoRegistrado = true;
         }else{ 
