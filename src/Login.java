@@ -205,7 +205,8 @@ public class Login extends javax.swing.JFrame {
         exists = false;
         usrn = UserTF.getText();
         pass = clavePF.getText();
-        
+       
+        try{ 
         if (unoRegistrado = false){
            users usr1 = new users(usrn, pass);
            usuarios.add(usr1);
@@ -229,7 +230,9 @@ public class Login extends javax.swing.JFrame {
             }
             
         }
-        
+        }catch (Exception e){
+            e.getMessage();
+        }
 
 
     }//GEN-LAST:event_addBtnActionPerformed
