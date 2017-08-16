@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Menu extends javax.swing.JFrame {
 int precioC, precioB, precioCh, pTotal = 0;
+Orden order = new Orden();
     /**
      * Creates new form Menu
      */
@@ -92,6 +93,11 @@ int precioC, precioB, precioCh, pTotal = 0;
 
         continueBtn.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         continueBtn.setText("Continuar");
+        continueBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                continueBtnMouseClicked(evt);
+            }
+        });
         continueBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 continueBtnActionPerformed(evt);
@@ -182,7 +188,6 @@ int precioC, precioB, precioCh, pTotal = 0;
     }// </editor-fold>//GEN-END:initComponents
 
     private void continueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueBtnActionPerformed
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_continueBtnActionPerformed
 
@@ -203,6 +208,12 @@ int precioC, precioB, precioCh, pTotal = 0;
         setPreciosCh();
         sumar();
     }//GEN-LAST:event_chipsCbxActionPerformed
+
+    private void continueBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continueBtnMouseClicked
+        if (pTotal>0) {
+            
+        }
+    }//GEN-LAST:event_continueBtnMouseClicked
     
     public void showOpts(int x){ 
         
