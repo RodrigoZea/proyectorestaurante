@@ -188,7 +188,12 @@ Orden order = new Orden();
     }// </editor-fold>//GEN-END:initComponents
 
     private void continueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueBtnActionPerformed
-
+        if (pTotal > 0){
+            order.setVisible(true);
+           this.hide();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un mínimo de 2 opciones", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_continueBtnActionPerformed
 
     private void comidaCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comidaCbxActionPerformed
@@ -210,9 +215,7 @@ Orden order = new Orden();
     }//GEN-LAST:event_chipsCbxActionPerformed
 
     private void continueBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continueBtnMouseClicked
-        if (pTotal>0) {
-            
-        }
+       // TODO add your handling code here:
     }//GEN-LAST:event_continueBtnMouseClicked
     
     public void showOpts(int x){ 
@@ -325,6 +328,7 @@ Orden order = new Orden();
     public void sumar(){
         pTotal = precioC + precioB + precioCh;
         ordLbl3.setText(pTotal + "");
+        order.setTotal(pTotal);
     }
     /**
      * @param args the command line arguments

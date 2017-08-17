@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,10 +13,15 @@
  */
 public class Orden extends javax.swing.JFrame {
 
+    private int total;
+    private String hora;
+    Factura compra = new Factura();
     /**
      * Creates new form Orden
      */
     public Orden() {
+        total = 0;
+        hora = "";
         initComponents();
     }
 
@@ -29,10 +37,13 @@ public class Orden extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         OrdenLbl = new javax.swing.JLabel();
         totalLbl = new javax.swing.JLabel();
-        totalField = new javax.swing.JTextField();
         metodoPagoLbl = new javax.swing.JLabel();
         EfectivoLbl = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        tarjetaLbl = new javax.swing.JLabel();
+        pagoLbl = new javax.swing.JLabel();
+        totalLbl1 = new javax.swing.JLabel();
+        horaEntregaTextField = new javax.swing.JTextField();
+        AceptarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,21 +52,48 @@ public class Orden extends javax.swing.JFrame {
         OrdenLbl.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         OrdenLbl.setText("Orden");
 
-        totalLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        totalLbl.setText("Total a pagar:");
+        totalLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        totalLbl.setText("Total a pagar: Q");
 
-        totalField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalFieldActionPerformed(evt);
+        metodoPagoLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        metodoPagoLbl.setText("Por favor, seleccione su método de pago:");
+
+        EfectivoLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/efectivo.png"))); // NOI18N
+        EfectivoLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EfectivoLblMouseClicked(evt);
             }
         });
 
-        metodoPagoLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        metodoPagoLbl.setText("Seleccione su método de pago:");
+        tarjetaLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tarjeta.png"))); // NOI18N
+        tarjetaLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tarjetaLblMouseClicked(evt);
+            }
+        });
 
-        EfectivoLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/efectivo.png"))); // NOI18N
+        pagoLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tarjeta.png"))); // NOI18N
+        totalLbl1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        totalLbl1.setText("Ingrese la hora a la que irá a recibir a su pedido:");
+
+        horaEntregaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horaEntregaTextFieldActionPerformed(evt);
+            }
+        });
+
+        AceptarBtn.setText("Aceptar");
+        AceptarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AceptarBtnMouseClicked(evt);
+            }
+        });
+        AceptarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,56 +104,114 @@ public class Orden extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(metodoPagoLbl)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(horaEntregaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(AceptarBtn))
+                    .addComponent(totalLbl1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(totalLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pagoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(OrdenLbl)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
                         .addComponent(EfectivoLbl)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tarjetaLbl)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(OrdenLbl)
-                .addGap(29, 29, 29)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalLbl)
-                    .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(pagoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(totalLbl1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(horaEntregaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AceptarBtn))
+                .addGap(32, 32, 32)
                 .addComponent(metodoPagoLbl)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(EfectivoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(83, 83, 83))))
+                        .addGap(18, 18, 18)
+                        .addComponent(EfectivoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(tarjetaLbl)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void totalFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalFieldActionPerformed
-        
-    }//GEN-LAST:event_totalFieldActionPerformed
+    private void EfectivoLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EfectivoLblMouseClicked
+        // TODO add your handling code here:
+        showDetails(0);
+    }//GEN-LAST:event_EfectivoLblMouseClicked
 
+    private void horaEntregaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaEntregaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_horaEntregaTextFieldActionPerformed
+
+    private void AceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AceptarBtnActionPerformed
+
+    private void AceptarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptarBtnMouseClicked
+        hora = horaEntregaTextField.getText();
+        if (hora.length()>3) {
+            JOptionPane.showMessageDialog(null, "Hora ingresada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            metodoPagoLbl.setVisible(true);
+            tarjetaLbl.setVisible(true);
+            EfectivoLbl.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una hora valida", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_AceptarBtnMouseClicked
+
+    private void tarjetaLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tarjetaLblMouseClicked
+        // TODO add your handling code here:
+        showDetails(1);
+    }//GEN-LAST:event_tarjetaLblMouseClicked
+
+    
+    public void setTotal (int total) {
+        this.total = total;
+        pagoLbl.setText(total+"");
+        metodoPagoLbl.setVisible(false);
+        tarjetaLbl.setVisible(false);
+        EfectivoLbl.setVisible(false);
+    }
+
+    public void showDetails(int x){ 
+        
+        if (x==0){
+            compra.mostrarFactura(0, hora);
+
+        } else if (x==1) {
+            compra.mostrarFactura(1, hora);
+        }
+        compra.setVisible(true);
+        this.hide();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -152,12 +248,15 @@ public class Orden extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AceptarBtn;
     private javax.swing.JLabel EfectivoLbl;
     private javax.swing.JLabel OrdenLbl;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField horaEntregaTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel metodoPagoLbl;
-    private javax.swing.JTextField totalField;
+    private javax.swing.JLabel pagoLbl;
+    private javax.swing.JLabel tarjetaLbl;
     private javax.swing.JLabel totalLbl;
+    private javax.swing.JLabel totalLbl1;
     // End of variables declaration//GEN-END:variables
 }
