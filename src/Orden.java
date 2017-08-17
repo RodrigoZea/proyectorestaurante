@@ -15,6 +15,7 @@ public class Orden extends javax.swing.JFrame {
 
     private int total;
     private String hora;
+    private int HoraCe, HoraAb, nHora;
     Factura compra = new Factura();
     /**
      * Creates new form Orden
@@ -24,7 +25,14 @@ public class Orden extends javax.swing.JFrame {
         hora = "";
         initComponents();
     }
-
+    
+    public Orden(int total, int horaAb, int horaCe) {
+        initComponents();
+        HoraAb = horaAb;
+        HoraCe = horaCe;
+        setTotal(total);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +52,7 @@ public class Orden extends javax.swing.JFrame {
         totalLbl1 = new javax.swing.JLabel();
         horaEntregaTextField = new javax.swing.JTextField();
         AceptarBtn = new javax.swing.JButton();
+        avisoLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +91,11 @@ public class Orden extends javax.swing.JFrame {
                 horaEntregaTextFieldActionPerformed(evt);
             }
         });
+        horaEntregaTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                horaEntregaTextFieldKeyTyped(evt);
+            }
+        });
 
         AceptarBtn.setText("Aceptar");
         AceptarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,6 +109,9 @@ public class Orden extends javax.swing.JFrame {
             }
         });
 
+        avisoLbl.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        avisoLbl.setText("(Usar formato 24 horas)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,6 +119,7 @@ public class Orden extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(avisoLbl)
                     .addComponent(metodoPagoLbl)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(horaEntregaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,16 +144,18 @@ public class Orden extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(OrdenLbl)
                 .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalLbl)
-                    .addComponent(pagoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pagoLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalLbl))
                 .addGap(35, 35, 35)
                 .addComponent(totalLbl1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(horaEntregaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AceptarBtn))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(avisoLbl)
+                .addGap(1, 1, 1)
                 .addComponent(metodoPagoLbl)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -175,7 +195,7 @@ public class Orden extends javax.swing.JFrame {
     }//GEN-LAST:event_AceptarBtnActionPerformed
 
     private void AceptarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptarBtnMouseClicked
-        hora = horaEntregaTextField.getText();
+       /* hora = horaEntregaTextField.getText();
         if (hora.length()>3) {
             JOptionPane.showMessageDialog(null, "Hora ingresada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             metodoPagoLbl.setVisible(true);
@@ -183,13 +203,22 @@ public class Orden extends javax.swing.JFrame {
             EfectivoLbl.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese una hora valida", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-        }
+        }*/
+       horaCorrecta(HoraAb, HoraCe);
     }//GEN-LAST:event_AceptarBtnMouseClicked
 
     private void tarjetaLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tarjetaLblMouseClicked
         // TODO add your handling code here:
         showDetails(1);
     }//GEN-LAST:event_tarjetaLblMouseClicked
+
+    private void horaEntregaTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_horaEntregaTextFieldKeyTyped
+        // TODO add your handling code here:
+         boolean max = horaEntregaTextField.getText().length() > 4;
+             if (max){
+                 evt.consume();
+             } 
+    }//GEN-LAST:event_horaEntregaTextFieldKeyTyped
 
     
     public void setTotal (int total) {
@@ -199,7 +228,28 @@ public class Orden extends javax.swing.JFrame {
         tarjetaLbl.setVisible(false);
         EfectivoLbl.setVisible(false);
     }
+    public void horaCorrecta (int horaAb, int horaCe){ 
+        hora = horaEntregaTextField.getText();
+        nHora = Integer.parseInt(hora.substring(0,2) + hora.substring(3,5));
 
+        if (hora.length()>4) {
+           if (nHora >= horaAb && nHora <= horaCe){
+              JOptionPane.showMessageDialog(null, "Hora ingresada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+              horaEntregaTextField.disable();
+              AceptarBtn.setVisible(false);
+              metodoPagoLbl.setVisible(true);
+              tarjetaLbl.setVisible(true);
+              EfectivoLbl.setVisible(true); 
+           }else{
+            JOptionPane.showMessageDialog(null, "El restaurante no está abierto a esa hora", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+           }
+      
+             
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una hora valida", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }
     public void showDetails(int x){ 
         
         if (x==0){
@@ -251,6 +301,7 @@ public class Orden extends javax.swing.JFrame {
     private javax.swing.JButton AceptarBtn;
     private javax.swing.JLabel EfectivoLbl;
     private javax.swing.JLabel OrdenLbl;
+    private javax.swing.JLabel avisoLbl;
     private javax.swing.JTextField horaEntregaTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel metodoPagoLbl;

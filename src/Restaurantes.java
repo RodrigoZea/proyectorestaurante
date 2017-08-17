@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Restaurantes extends javax.swing.JFrame {
     String descripcion, horario, nombre;
+    int horaAb, horaCe;
     /**
      * Creates new form Restaurantes
      */
@@ -155,31 +156,39 @@ public class Restaurantes extends javax.swing.JFrame {
             case 1:  
               nombre = "Go Green";  
               descripcion = "Provee una variedad de alimentos más saludables que los de otros restaurantes";
-              horario = "10 AM - 3:30 PM";
+              horario = "10:00 AM - 15:30 PM";
+              horaAb = 1000;
+              horaCe = 1530;
               break;
             case 2:
               nombre = "Bagel Bros";    
               descripcion = "Ofrece sandwiches de tipo Bagel, los cuales pueden ser una alternativa a sandwiches normales";
-              horario = "8:30 AM - 2:00 PM";
+              horario = "08:30 AM - 14:00 PM";
+              horaAb = 830;
+              horaCe = 1400;
               break;
             case 3:
               nombre = "Café Gitane";    
               descripcion = "Ofrece meriendas simples para un receso o una variedad de almuerzos";
-              horario = "6:30 AM - 5:00 PM";
+              horario = "06:30 AM - 17:00 PM";
+              horaAb = 630;
+              horaCe = 1700;
               break;
             case 4:
               nombre = "Picnic";   
               descripcion = "Ofrece opciones de comida más caseras y tradicionales que otros restaurantes";  
-              horario = "7 AM - 3:00 PM";
+              horario = "07:00 AM - 15:00 PM";
+              horaAb = 700;
+              horaCe = 1500;
               break;
         }
         
-        //JOptionPane.showConfirmDialog(null, descripcion + "\n" + "Horario: " + horario, nombre, JOptionPane.YES_NO_OPTION);
+        
         
         if (JOptionPane.showConfirmDialog(null, (descripcion + "\n" + "Horario: " + horario), (nombre),
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             // yes option
-            Menu menu = new Menu(opt);
+            Menu menu = new Menu(opt, horaAb, horaCe);
             menu.show();
             this.hide();
         } else {

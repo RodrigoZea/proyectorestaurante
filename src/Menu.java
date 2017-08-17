@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class Menu extends javax.swing.JFrame {
 int precioC, precioB, precioCh, pTotal = 0;
-Orden order = new Orden();
+int HoraAb, HoraCe;
+
     /**
      * Creates new form Menu
      */
@@ -24,9 +25,10 @@ Orden order = new Orden();
 
     }
     
-    public Menu(int x) {
+    public Menu(int x, int horaAb, int horaCe) {
         initComponents();
         showOpts(x);
+        pasarHora(horaAb, horaCe);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -189,7 +191,8 @@ Orden order = new Orden();
 
     private void continueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueBtnActionPerformed
         if (pTotal > 0){
-            order.setVisible(true);
+           Orden order = new Orden(pTotal, HoraAb, HoraCe);
+           order.setVisible(true);
            this.hide();
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, seleccione un mínimo de 2 opciones", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -305,6 +308,14 @@ Orden order = new Orden();
             precioB = 12;
         }else if (bebidaCbx.getSelectedItem().equals("Mountain Dew")){
             precioB = 7;
+        }else if (bebidaCbx.getSelectedItem().equals("Horchata")){
+            precioB = 7;
+        }else if (bebidaCbx.getSelectedItem().equals("Jamaica")){
+            precioB = 7;
+        }else if (bebidaCbx.getSelectedItem().equals("Naranjada")){
+            precioB = 7;
+        }else if (bebidaCbx.getSelectedItem().equals("Limonada")){
+            precioB = 7;
         }
     }
     public void setPreciosCh(){ 
@@ -324,11 +335,14 @@ Orden order = new Orden();
             precioCh = 10;
         }
     }
-    
+    public void pasarHora(int horaAb, int horaCe){
+        HoraAb = horaAb;
+        HoraCe = horaCe;
+    }
     public void sumar(){
         pTotal = precioC + precioB + precioCh;
         ordLbl3.setText(pTotal + "");
-        order.setTotal(pTotal);
+        //order.setTotal(pTotal);
     }
     /**
      * @param args the command line arguments

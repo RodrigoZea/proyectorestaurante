@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -58,8 +58,8 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="numOrdenLbl" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="nombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="fechaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="acpBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -75,7 +75,7 @@
                           <Component id="efectivoLbl" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -98,11 +98,11 @@
                       <Component id="numOrdenLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ordenLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="fechaLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="77" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="acpBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="65" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -111,7 +111,7 @@
         <Component class="javax.swing.JLabel" name="FacturaLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="0"/>
+              <Font name="Segoe UI" size="24" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Su pedido estar&#xe1; listo a las"/>
           </Properties>
@@ -119,7 +119,7 @@
         <Component class="javax.swing.JLabel" name="CompraLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#xa1;Gracias por su compra!"/>
           </Properties>
@@ -134,7 +134,7 @@
         <Component class="javax.swing.JLabel" name="tarjetaLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
+              <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Por favor, presente su tarjeta de cr&#xe9;dito y muestre el siguiente mensaje para pagar"/>
           </Properties>
@@ -142,7 +142,7 @@
         <Component class="javax.swing.JLabel" name="ordenLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="0"/>
+              <Font name="Segoe UI" size="24" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Orden:"/>
           </Properties>
@@ -150,23 +150,15 @@
         <Component class="javax.swing.JLabel" name="numOrdenLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="0"/>
+              <Font name="Segoe UI" size="24" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="122"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="nombreLbl">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Nombre: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="fechaLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="0"/>
+              <Font name="Segoe UI" size="24" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fecha: 17/08/2017"/>
           </Properties>
@@ -174,10 +166,18 @@
         <Component class="javax.swing.JLabel" name="efectivoLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
+              <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Por favor, tenga el efectivo listo y muestre el siguiente mensaje para pagar"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="acpBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Aceptar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acpBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -14,13 +14,14 @@ import javax.swing.JOptionPane;
  * @version 1.0
  */
 public class Login extends javax.swing.JFrame {
-    //Holi esto es una prueba agregada por Oscar
+    //Variables de Instancia
     ArrayList<users> usuarios = new ArrayList<>(); 
     String usrn, pass;
     boolean unoRegistrado = false;
     boolean exists, cuentaE, nv;
+    
     /**
-     * Creates new form Login
+     * Crea una nueva Forma tipo Login
      */
     public Login() {
         initComponents();
@@ -161,19 +162,25 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void vlnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vlnBtnActionPerformed
-        // TODO add your handling code here:
+        // Cuando se le da clic al botón validar que haga esto
+        // Se consigue los datos ingresados por el usuario en los textbox de user y password
        cuentaE = false;
        usrn = UserTF.getText();
        pass = clavePF.getText(); 
        
+       // Busca si existe el usuario o no
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getUsuario().equals(usrn) && usuarios.get(i).getClave().equals(pass)) {
+                //Si la cuenta existe y el usuario ingreso su clave respectiva
+                //Entonces se marca el boolean que la cuenta sí existe
                 cuentaE = true;
                 
             }
         }
         
+        //Si la cuenta existe entonces...
         if (cuentaE == true ){ 
+            //
             JOptionPane.showMessageDialog(null, "Verificación completa", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             Restaurantes rest = new Restaurantes();
             this.hide();
@@ -227,7 +234,7 @@ public class Login extends javax.swing.JFrame {
             }else{
                 users usr1 = new users(usrn, pass);
                 usuarios.add(usr1);
-                System.out.println(usuarios.get(0).getUsuario());
+               
                 JOptionPane.showMessageDialog(null, "Usuario Agregado", "Éxito", JOptionPane.INFORMATION_MESSAGE); 
             }
             

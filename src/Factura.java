@@ -1,3 +1,7 @@
+
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +13,13 @@
  * @author Oscar
  */
 public class Factura extends javax.swing.JFrame {
-
+Random rn = new Random();
     /**
      * Creates new form Factura
      */
     public Factura() {
         initComponents();
+        setNumFactura();
     }
 
     /**
@@ -33,39 +38,43 @@ public class Factura extends javax.swing.JFrame {
         tarjetaLbl = new javax.swing.JLabel();
         ordenLbl = new javax.swing.JLabel();
         numOrdenLbl = new javax.swing.JLabel();
-        nombreLbl = new javax.swing.JLabel();
         fechaLbl = new javax.swing.JLabel();
         efectivoLbl = new javax.swing.JLabel();
+        acpBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
-        FacturaLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        FacturaLbl.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         FacturaLbl.setText("Su pedido estará listo a las");
 
-        CompraLbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        CompraLbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         CompraLbl.setText("¡Gracias por su compra!");
 
         HoraLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        tarjetaLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tarjetaLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tarjetaLbl.setText("Por favor, presente su tarjeta de crédito y muestre el siguiente mensaje para pagar");
 
-        ordenLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        ordenLbl.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         ordenLbl.setText("Orden:");
 
-        numOrdenLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        numOrdenLbl.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         numOrdenLbl.setText("122");
 
-        nombreLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        nombreLbl.setText("Nombre: ");
-
-        fechaLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        fechaLbl.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         fechaLbl.setText("Fecha: 17/08/2017");
 
-        efectivoLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        efectivoLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         efectivoLbl.setText("Por favor, tenga el efectivo listo y muestre el siguiente mensaje para pagar");
+
+        acpBtn.setText("Aceptar");
+        acpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acpBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,8 +93,8 @@ public class Factura extends javax.swing.JFrame {
                                 .addComponent(ordenLbl)
                                 .addGap(18, 18, 18)
                                 .addComponent(numOrdenLbl))
-                            .addComponent(nombreLbl)
-                            .addComponent(fechaLbl)))
+                            .addComponent(fechaLbl)
+                            .addComponent(acpBtn)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(182, 182, 182)
                         .addComponent(CompraLbl))
@@ -95,7 +104,7 @@ public class Factura extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(efectivoLbl)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,18 +123,18 @@ public class Factura extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numOrdenLbl)
                     .addComponent(ordenLbl))
-                .addGap(18, 18, 18)
-                .addComponent(nombreLbl)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fechaLbl)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(acpBtn)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,6 +143,12 @@ public class Factura extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void acpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acpBtnActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "¡Que tenga un buen día!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
+    }//GEN-LAST:event_acpBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +185,11 @@ public class Factura extends javax.swing.JFrame {
         });
     }
     
+    public void setNumFactura (){
+        int numOrden = rn.nextInt((1000-1)+1)+1;
+        numOrdenLbl.setText(numOrden + "");
+    }
+    
     public void mostrarFactura (int tipo, String hora) {
         
         tarjetaLbl.setVisible(false);
@@ -188,10 +208,10 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JLabel CompraLbl;
     private javax.swing.JLabel FacturaLbl;
     private javax.swing.JLabel HoraLbl;
+    private javax.swing.JButton acpBtn;
     private javax.swing.JLabel efectivoLbl;
     private javax.swing.JLabel fechaLbl;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel nombreLbl;
     private javax.swing.JLabel numOrdenLbl;
     private javax.swing.JLabel ordenLbl;
     private javax.swing.JLabel tarjetaLbl;
