@@ -145,7 +145,7 @@ Random rn = new Random();
     }// </editor-fold>//GEN-END:initComponents
 
     private void acpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acpBtnActionPerformed
-        // TODO add your handling code here:
+        //Si le da aceptar, que se cierre el programa porque ya se completó 
         JOptionPane.showMessageDialog(null, "¡Que tenga un buen día!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);
     }//GEN-LAST:event_acpBtnActionPerformed
@@ -184,21 +184,25 @@ Random rn = new Random();
             }
         });
     }
-    
+    //Se pone un número de orden para el usuario, que es un random entre 1 y 1000
     public void setNumFactura (){
         int numOrden = rn.nextInt((1000-1)+1)+1;
+        //El label toma el valor del random
         numOrdenLbl.setText(numOrden + "");
     }
     
+    //Se muestra la factura con toda la información
     public void mostrarFactura (int tipo, String hora) {
-        
+        //Se esconde lo necesario
         tarjetaLbl.setVisible(false);
         efectivoLbl.setVisible(false);
         HoraLbl.setText(hora);
         
-        if (tipo == 0){  
+        if (tipo == 0){ 
+            //Se pone el mensaje respectivo si el usuario paga con efectivo
             efectivoLbl.setVisible(true); 
         } else if (tipo == 1){
+            //Se pone el mensaje respectivo si el usuario paga con tarjeta
             tarjetaLbl.setVisible(true);
         }
  

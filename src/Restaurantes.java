@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  * @version 1.0
  */
 public class Restaurantes extends javax.swing.JFrame {
+    //Variables de instancia
     String descripcion, horario, nombre;
     int horaAb, horaCe;
     /**
@@ -131,29 +132,32 @@ public class Restaurantes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ggLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ggLblMouseClicked
-        // TODO add your handling code here:
+        //Si se hace clic a GoGreen que se pongan los detalles del método showDetails
         showDetails(1);
     }//GEN-LAST:event_ggLblMouseClicked
 
     private void bbLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbLblMouseClicked
-        // TODO add your handling code here:
+        //Si se hace clic a Bagel Bros que se pongan los detalles del método showDetails
         showDetails(2);
     }//GEN-LAST:event_bbLblMouseClicked
 
     private void cgLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cgLblMouseClicked
-        // TODO add your handling code here:
+        //Si se hace clic a Cafe Gitane que se pongan los detalles del método showDetails
         showDetails(3);
     }//GEN-LAST:event_cgLblMouseClicked
 
     private void pnLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnLblMouseClicked
-        // TODO add your handling code here:
+        //Si se hace clic a Picnic que se pongan los detalles del método showDetails
         showDetails(4);
     }//GEN-LAST:event_pnLblMouseClicked
-
+    
+    //Que se muestren los detalles dependiendo del restaurante que se eligió
     public void showDetails(int x){ 
         int opt = x;
+        //Switch dependiendo de qué opción elige
         switch(opt){
             case 1:  
+              //Dependiendo del restaurante que se ponga ese nombre, descripción, horario, hora de apertura y hora de cierre  
               nombre = "Go Green";  
               descripcion = "Provee una variedad de alimentos más saludables que los de otros restaurantes";
               horario = "10:00 AM - 15:30 PM";
@@ -161,6 +165,7 @@ public class Restaurantes extends javax.swing.JFrame {
               horaCe = 1530;
               break;
             case 2:
+              //Dependiendo del restaurante que se ponga ese nombre, descripción, horario, hora de apertura y hora de cierre 
               nombre = "Bagel Bros";    
               descripcion = "Ofrece sandwiches de tipo Bagel, los cuales pueden ser una alternativa a sandwiches normales";
               horario = "08:30 AM - 14:00 PM";
@@ -168,6 +173,7 @@ public class Restaurantes extends javax.swing.JFrame {
               horaCe = 1400;
               break;
             case 3:
+              //Dependiendo del restaurante que se ponga ese nombre, descripción, horario, hora de apertura y hora de cierre 
               nombre = "Café Gitane";    
               descripcion = "Ofrece meriendas simples para un receso o una variedad de almuerzos";
               horario = "06:30 AM - 17:00 PM";
@@ -175,6 +181,7 @@ public class Restaurantes extends javax.swing.JFrame {
               horaCe = 1700;
               break;
             case 4:
+              //Dependiendo del restaurante que se ponga ese nombre, descripción, horario, hora de apertura y hora de cierre 
               nombre = "Picnic";   
               descripcion = "Ofrece opciones de comida más caseras y tradicionales que otros restaurantes";  
               horario = "07:00 AM - 15:00 PM";
@@ -184,15 +191,15 @@ public class Restaurantes extends javax.swing.JFrame {
         }
         
         
-        
+        //Se muestra un botón de confirmación
         if (JOptionPane.showConfirmDialog(null, (descripcion + "\n" + "Horario: " + horario), (nombre),
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            // yes option
+            //Si el usuario sí decide elegir ese restaurante que se haga esto
             Menu menu = new Menu(opt, horaAb, horaCe);
             menu.show();
             this.hide();
         } else {
-            // no option
+            //Si dice que no, que no haga nada, solo se cierre el aviso
         }
     }
     

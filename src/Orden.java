@@ -9,23 +9,23 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Oscar
+ * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
  */
 public class Orden extends javax.swing.JFrame {
-
+    //Variables de instancia
     private int total;
     private String hora;
     private int HoraCe, HoraAb, nHora;
     Factura compra = new Factura();
     /**
-     * Creates new form Orden
+     * Creates new form Orden sin parámetros
      */
     public Orden() {
         total = 0;
         hora = "";
         initComponents();
     }
-    
+    //Se crea el form con los parámetros del precio total del menú, la hora de apertura y la hora de cierre
     public Orden(int total, int horaAb, int horaCe) {
         initComponents();
         HoraAb = horaAb;
@@ -182,45 +182,37 @@ public class Orden extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EfectivoLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EfectivoLblMouseClicked
-        // TODO add your handling code here:
+        //Si le da clic a efectivo, que se mande el parámetro opción 0
         showDetails(0);
     }//GEN-LAST:event_EfectivoLblMouseClicked
-
+    //NSU
     private void horaEntregaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaEntregaTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_horaEntregaTextFieldActionPerformed
-
+    //NSU
     private void AceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AceptarBtnActionPerformed
-
+    //Si se da clic al botón aceptar
     private void AceptarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptarBtnMouseClicked
-       /* hora = horaEntregaTextField.getText();
-        if (hora.length()>3) {
-            JOptionPane.showMessageDialog(null, "Hora ingresada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            metodoPagoLbl.setVisible(true);
-            tarjetaLbl.setVisible(true);
-            EfectivoLbl.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Por favor, ingrese una hora valida", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-        }*/
-       horaCorrecta(HoraAb, HoraCe);
+        //Se ejecuta el método horacorrecta con los parámetros de hora apertura y hora de cierre
+        horaCorrecta(HoraAb, HoraCe);
     }//GEN-LAST:event_AceptarBtnMouseClicked
 
     private void tarjetaLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tarjetaLblMouseClicked
-        // TODO add your handling code here:
+        //Si le da clic a tarjeta, que se mande el parámetro opción 1
         showDetails(1);
     }//GEN-LAST:event_tarjetaLblMouseClicked
 
     private void horaEntregaTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_horaEntregaTextFieldKeyTyped
-        // TODO add your handling code here:
+        //No deja que el usuario ponga más de 5 caracteres en el textbox de hora
          boolean max = horaEntregaTextField.getText().length() > 4;
              if (max){
                  evt.consume();
              } 
     }//GEN-LAST:event_horaEntregaTextFieldKeyTyped
 
-    
+    //Se pone el total de la orden (del form menu) en el resumen de la orden (form orden)
     public void setTotal (int total) {
         this.total = total;
         pagoLbl.setText(total+"");
@@ -228,36 +220,47 @@ public class Orden extends javax.swing.JFrame {
         tarjetaLbl.setVisible(false);
         EfectivoLbl.setVisible(false);
     }
+    
+    //Verifica si la hora está bien o mal
     public void horaCorrecta (int horaAb, int horaCe){ 
+        //Obtiene la hora ingresada del textbox de la hora
         hora = horaEntregaTextField.getText();
+        //Convierte la hora en un número
         nHora = Integer.parseInt(hora.substring(0,2) + hora.substring(3,5));
-
+        //Si la hora contiene más de 4 caracteres entonces sí cumple con el formato
         if (hora.length()>4) {
+            //Si el número de la hora que ingreso el usuario está entre la hora de apertura y cierre...
            if (nHora >= horaAb && nHora <= horaCe){
-              JOptionPane.showMessageDialog(null, "Hora ingresada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+              //La hora es correcta y se muestran las opciones de pago
+               JOptionPane.showMessageDialog(null, "Hora ingresada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
               horaEntregaTextField.disable();
               AceptarBtn.setVisible(false);
               metodoPagoLbl.setVisible(true);
               tarjetaLbl.setVisible(true);
               EfectivoLbl.setVisible(true); 
            }else{
+             //Se muestra el error que el restaurante no está abierto a esa hora
             JOptionPane.showMessageDialog(null, "El restaurante no está abierto a esa hora", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
            }
       
              
         } else {
+            //Si el formato de la hora está equivocada, se muestra un error
             JOptionPane.showMessageDialog(null, "Por favor, ingrese una hora valida", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
         
     }
+    
+    //Depende de si eligió pago en efectivo o tarjeta, que haga tal cosa
     public void showDetails(int x){ 
-        
+        //Si le da clic a efectivo
         if (x==0){
             compra.mostrarFactura(0, hora);
-
+        //Si le da clic a tarjeta
         } else if (x==1) {
             compra.mostrarFactura(1, hora);
         }
+        //Se muestra el form de factura
         compra.setVisible(true);
         this.hide();
     }

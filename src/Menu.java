@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
  * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
  * @version 1.0
  */
+
+//Variables de instancia
 public class Menu extends javax.swing.JFrame {
 int precioC, precioB, precioCh, pTotal = 0;
 int HoraAb, HoraCe;
@@ -24,7 +26,7 @@ int HoraAb, HoraCe;
         initComponents();
 
     }
-    
+    //Constructor con parámetros, dependiendo la hora de apertura, cierre y la opción de restaurante que usó
     public Menu(int x, int horaAb, int horaCe) {
         initComponents();
         showOpts(x);
@@ -189,57 +191,66 @@ int HoraAb, HoraCe;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Si le da al botón de continuar
     private void continueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueBtnActionPerformed
+        //Si el precio es mayor a 0, que el usuario pueda proceder a la próxima pantalla
         if (pTotal > 0){
            Orden order = new Orden(pTotal, HoraAb, HoraCe);
            order.setVisible(true);
            this.hide();
         } else {
+        //Se muestra un error, que debe seleccionar opciones    
             JOptionPane.showMessageDialog(null, "Por favor, seleccione un mínimo de 2 opciones", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_continueBtnActionPerformed
-
+    
+    
     private void comidaCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comidaCbxActionPerformed
-        // TODO add your handling code here:
+        //Si cambia el valor del combobox entonces que se consigan los precios
       setPreciosC();
       sumar();
     }//GEN-LAST:event_comidaCbxActionPerformed
 
     private void bebidaCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bebidaCbxActionPerformed
-        // TODO add your handling code here:
+        //Si cambia el valor del combobox de bebida entonces que se consigan los precios
        setPreciosB();
        sumar();
     }//GEN-LAST:event_bebidaCbxActionPerformed
 
     private void chipsCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chipsCbxActionPerformed
-        // TODO add your handling code here:
+        //Si cambia el valor del combobox de chips entonces que se consigan los precios
         setPreciosCh();
         sumar();
     }//GEN-LAST:event_chipsCbxActionPerformed
 
+    //NSU
     private void continueBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continueBtnMouseClicked
        // TODO add your handling code here:
     }//GEN-LAST:event_continueBtnMouseClicked
     
     public void showOpts(int x){ 
-        
+        //Un switch dependiendo de qué restaurante eligió
         switch (x){
             case 1:
+                //Si eligió GoGreen...
                 comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "iGO Indic", "iGO Cesar", "iGO Club", "Ensalada" }));
                 bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pepsi Light", "Limonada Piña", "Agua Pura", "Limonada Fresa" }));
                 chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Lays", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
                 break;
             case 2:
+                //Bagel Bros...
                 comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pollo Cesar", "Pavocado", "Napoli", "Grilled Cheese" }));
                 bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pepsi", "Mirinda", "Agua Pura", "7 Up" }));
                 chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Lays", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
                 break;
             case 3:
+                //Café Gitane...
                 comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Gitane Pollo", "Quesadilla", "Croissant", "Hamburgesa" }));
                 bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Horchata", "Naranjada", "Jamaica", "Limonada" }));
                 chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Brownie", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
                 break;
             case 4:
+                //Picnic...
                 comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pan con Huevo", "Pan con Jamón", "Pan con Frijol", "Sopa" }));
                 bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Aloe Vera", "Mountain Dew", "Pepsi", "Mirinda" }));
                 chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Papas", "Dorito Verde", "Dorito Rojo", "Lays Verdes" }));
@@ -247,7 +258,7 @@ int HoraAb, HoraCe;
         }
     }
     public void setPreciosC(){ 
-        //ordLbl3.setText((String) comidaCbx.getSelectedItem());
+        //Se ponen los precios de cada "plato principal"
         if (comidaCbx.getSelectedItem().equals("iGO Indic")){
             precioC = 25;
         }else if (comidaCbx.getSelectedItem().equals("iGO Cesar")){
@@ -288,6 +299,7 @@ int HoraAb, HoraCe;
         
     }
     public void setPreciosB(){
+       //Se ponen los precios de cada tipo de bebida
        if (bebidaCbx.getSelectedItem().equals("Sin opción")){
             precioB = 0;
         }else if (bebidaCbx.getSelectedItem().equals("Pepsi Light")){
@@ -319,6 +331,7 @@ int HoraAb, HoraCe;
         }
     }
     public void setPreciosCh(){ 
+        //Se ponen los precios de cada opción de chips o snack extra
         if (chipsCbx.getSelectedItem().equals("Sin opción")){
             precioCh = 0;
         }else if (chipsCbx.getSelectedItem().equals("Lays")){
@@ -336,10 +349,12 @@ int HoraAb, HoraCe;
         }
     }
     public void pasarHora(int horaAb, int horaCe){
+        //Se envía la hora de apertura y cierre al próximo form
         HoraAb = horaAb;
         HoraCe = horaCe;
     }
     public void sumar(){
+        //Suma los precios de comida, bebida y los chips
         pTotal = precioC + precioB + precioCh;
         ordLbl3.setText(pTotal + "");
         //order.setTotal(pTotal);

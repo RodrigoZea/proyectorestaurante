@@ -161,6 +161,7 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //La acción que realiza el botón de "Validar"
     private void vlnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vlnBtnActionPerformed
         // Cuando se le da clic al botón validar que haga esto
         // Se consigue los datos ingresados por el usuario en los textbox de user y password
@@ -180,12 +181,14 @@ public class Login extends javax.swing.JFrame {
         
         //Si la cuenta existe entonces...
         if (cuentaE == true ){ 
-            //
+            //Se muestra un aviso de verificación completa
             JOptionPane.showMessageDialog(null, "Verificación completa", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            //Se muestra la nueva form
             Restaurantes rest = new Restaurantes();
             this.hide();
             rest.show();
         }else{
+            //Si no existe entonces que muestre un error
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
             
         }
@@ -193,8 +196,9 @@ public class Login extends javax.swing.JFrame {
        
     }//GEN-LAST:event_vlnBtnActionPerformed
 
+    //La acción que realiza el botón de "Registrar"
     private void regrBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regrBtnActionPerformed
-        // TODO add your handling code here:
+        //Solo cambia de pantalla a la de registrar
         loginLbl.setText("Registrar");
         borrarTxt();
         vlnBtn.setVisible(false);
@@ -203,38 +207,44 @@ public class Login extends javax.swing.JFrame {
         rgrLbl.setVisible(true);
     }//GEN-LAST:event_regrBtnActionPerformed
 
+    //No se usó (NSU)
     private void UserTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UserTFActionPerformed
 
+    //La acción que realiza el botón de Agregar
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        //Se consigue lo que hay escrito en los textbox de User y Pass
+        //Boolean de que existe se pone como falso porque aún no se crea la cuenta
         exists = false;
         usrn = UserTF.getText();
         pass = clavePF.getText();
        
         try{ 
-
+        //Si no hay ningún usuario registrado que haga esto...    
         if (unoRegistrado = false){
+             //Agrega un nuevo usuario a la lista
              users usr1 = new users(usrn, pass);
              usuarios.add(usr1);
-           
+             //Se muestra el mensaje de éxito            
              JOptionPane.showMessageDialog(null, "Éxito", "Usuario Agregado", JOptionPane.INFORMATION_MESSAGE); 
              unoRegistrado = true;  
  
         }else{ 
+            //Busca si existe el usuario o no
             for (int i = 0; i < usuarios.size(); i++) {
                 if (usuarios.get(i).getUsuario().equals(usrn)) {
                   exists = true;
                 }
             }
-            
+            //Si existe entonces que no se pueda registrar porque ya existe
             if (exists){
                 JOptionPane.showMessageDialog(null, "Este usuario ya existe", "Error", JOptionPane.INFORMATION_MESSAGE); 
+            //Si no existe que se agregue a la lista de usuarios
             }else{
                 users usr1 = new users(usrn, pass);
                 usuarios.add(usr1);
-               
+                //Mensaje de éxito
                 JOptionPane.showMessageDialog(null, "Usuario Agregado", "Éxito", JOptionPane.INFORMATION_MESSAGE); 
             }
             
@@ -246,9 +256,9 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addBtnActionPerformed
 
-    
+    //Acción que realiza el botón de registrar
     private void rgrLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rgrLblMouseClicked
-        // TODO add your handling code here:
+        //Si el usuario quiere regresar a la pantalla de Login cambiar el texto y se muestren los botones
         loginLbl.setText("Login");
         borrarTxt();
         vlnBtn.setVisible(true);
@@ -257,18 +267,12 @@ public class Login extends javax.swing.JFrame {
         rgrLbl.setVisible(false);
     }//GEN-LAST:event_rgrLblMouseClicked
 
+    //Se limpia el texto
     private void borrarTxt(){
         UserTF.setText("");
         clavePF.setText("");
     }
-    /* public void yaExiste(ArrayList<users> usrs){
-        for (users recorredor : usrs) {
-            if (usrn.equals(recorredor.getUsuario())){ 
-                //Que no lo agregue porque ya existe
-                
-            }
-        }
-    }*/
+
     
     /**
      * @param args the command line arguments
