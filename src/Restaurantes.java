@@ -15,6 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class Restaurantes extends javax.swing.JFrame {
     //Variables de instancia
+    Calculos calculos = new Calculos();
+    Menu menu = new Menu();
+    public static ArrayList<users> usuariosRest = new ArrayList<>();
     String descripcion, horario, nombre;
     int horaAb, horaCe;
     /**
@@ -41,6 +44,11 @@ public class Restaurantes extends javax.swing.JFrame {
         pnLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
@@ -133,77 +141,33 @@ public class Restaurantes extends javax.swing.JFrame {
 
     private void ggLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ggLblMouseClicked
         //Si se hace clic a GoGreen que se pongan los detalles del método showDetails
-        showDetails(1);
+        calculos.showDetails(1);   
+        this.setVisible(false);
     }//GEN-LAST:event_ggLblMouseClicked
 
     private void bbLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbLblMouseClicked
         //Si se hace clic a Bagel Bros que se pongan los detalles del método showDetails
-        showDetails(2);
+        calculos.showDetails(2);
+        this.setVisible(false);
     }//GEN-LAST:event_bbLblMouseClicked
 
     private void cgLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cgLblMouseClicked
         //Si se hace clic a Cafe Gitane que se pongan los detalles del método showDetails
-        showDetails(3);
+        calculos.showDetails(3);
+        this.setVisible(false);
     }//GEN-LAST:event_cgLblMouseClicked
 
     private void pnLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnLblMouseClicked
         //Si se hace clic a Picnic que se pongan los detalles del método showDetails
-        showDetails(4);
+        calculos.showDetails(4);
+        this.setVisible(false);
     }//GEN-LAST:event_pnLblMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        menu.usuariosMenu = usuariosRest;
+    }//GEN-LAST:event_formWindowOpened
     
     //Que se muestren los detalles dependiendo del restaurante que se eligió
-    public void showDetails(int x){ 
-        int opt = x;
-        //Switch dependiendo de qué opción elige
-        switch(opt){
-            case 1:  
-              //Dependiendo del restaurante que se ponga ese nombre, descripción, horario, hora de apertura y hora de cierre  
-              nombre = "Go Green";  
-              descripcion = "Provee una variedad de alimentos más saludables que los de otros restaurantes";
-              horario = "10:00 AM - 15:30 PM";
-              horaAb = 1000;
-              horaCe = 1530;
-              break;
-            case 2:
-              //Dependiendo del restaurante que se ponga ese nombre, descripción, horario, hora de apertura y hora de cierre 
-              nombre = "Bagel Bros";    
-              descripcion = "Ofrece sandwiches de tipo Bagel, los cuales pueden ser una alternativa a sandwiches normales";
-              horario = "08:30 AM - 14:00 PM";
-              horaAb = 830;
-              horaCe = 1400;
-              break;
-            case 3:
-              //Dependiendo del restaurante que se ponga ese nombre, descripción, horario, hora de apertura y hora de cierre 
-              nombre = "Café Gitane";    
-              descripcion = "Ofrece meriendas simples para un receso o una variedad de almuerzos";
-              horario = "06:30 AM - 17:00 PM";
-              horaAb = 630;
-              horaCe = 1700;
-              break;
-            case 4:
-              //Dependiendo del restaurante que se ponga ese nombre, descripción, horario, hora de apertura y hora de cierre 
-              nombre = "Picnic";   
-              descripcion = "Ofrece opciones de comida más caseras y tradicionales que otros restaurantes";  
-              horario = "07:00 AM - 15:00 PM";
-              horaAb = 700;
-              horaCe = 1500;
-              break;
-        }
-        
-        
-        //Se muestra un botón de confirmación
-        if (JOptionPane.showConfirmDialog(null, (descripcion + "\n" + "Horario: " + horario), (nombre),
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            //Si el usuario sí decide elegir ese restaurante que se haga esto
-            Menu menu = new Menu(opt, horaAb, horaCe);
-            menu.show();
-            this.hide();
-        } else {
-            //Si dice que no, que no haga nada, solo se cierre el aviso
-        }
-    }
-    
-    
     
     /**
      * @param args the command line arguments

@@ -15,7 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     //Variables de Instancia
-    ArrayList<users> usuarios = new ArrayList<>(); 
+    public static ArrayList<users> usuarios = new ArrayList<>(); 
+    Calculos calculos = new Calculos();
+    Restaurantes restaurantes = new Restaurantes();
     String usrn, pass;
     boolean unoRegistrado = false;
     boolean exists, cuentaE, nv;
@@ -165,40 +167,21 @@ public class Login extends javax.swing.JFrame {
     private void vlnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vlnBtnActionPerformed
         // Cuando se le da clic al botón validar que haga esto
         // Se consigue los datos ingresados por el usuario en los textbox de user y password
-       cuentaE = false;
-       usrn = UserTF.getText();
-       pass = clavePF.getText(); 
        
-       // Busca si existe el usuario o no
-        for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getUsuario().equals(usrn) && usuarios.get(i).getClave().equals(pass)) {
-                //Si la cuenta existe y el usuario ingreso su clave respectiva
-                //Entonces se marca el boolean que la cuenta sí existe
-                cuentaE = true;
-                
-            }
-        }
+        calculos.usuariosCalc = usuarios;
+        restaurantes.usuariosRest = usuarios;
         
-        //Si la cuenta existe entonces...
-        if (cuentaE == true ){ 
-            //Se muestra un aviso de verificación completa
-            JOptionPane.showMessageDialog(null, "Verificación completa", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            //Se muestra la nueva form
-            Restaurantes rest = new Restaurantes();
-            this.hide();
-            rest.show();
-        }else{
-            //Si no existe entonces que muestre un error
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
-            
-        }
+       usrn = UserTF.getText();
+       pass = clavePF.getText();
+              
+       calculos.Validar(usrn, pass);
            
-       
     }//GEN-LAST:event_vlnBtnActionPerformed
 
     //La acción que realiza el botón de "Registrar"
     private void regrBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regrBtnActionPerformed
         //Solo cambia de pantalla a la de registrar
+        
         loginLbl.setText("Registrar");
         borrarTxt();
         vlnBtn.setVisible(false);
@@ -219,39 +202,10 @@ public class Login extends javax.swing.JFrame {
         exists = false;
         usrn = UserTF.getText();
         pass = clavePF.getText();
+        
+        calculos.usuariosCalc = usuarios;
        
-        try{ 
-        //Si no hay ningún usuario registrado que haga esto...    
-        if (unoRegistrado = false){
-             //Agrega un nuevo usuario a la lista
-             users usr1 = new users(usrn, pass);
-             usuarios.add(usr1);
-             //Se muestra el mensaje de éxito            
-             JOptionPane.showMessageDialog(null, "Éxito", "Usuario Agregado", JOptionPane.INFORMATION_MESSAGE); 
-             unoRegistrado = true;  
- 
-        }else{ 
-            //Busca si existe el usuario o no
-            for (int i = 0; i < usuarios.size(); i++) {
-                if (usuarios.get(i).getUsuario().equals(usrn)) {
-                  exists = true;
-                }
-            }
-            //Si existe entonces que no se pueda registrar porque ya existe
-            if (exists){
-                JOptionPane.showMessageDialog(null, "Este usuario ya existe", "Error", JOptionPane.INFORMATION_MESSAGE); 
-            //Si no existe que se agregue a la lista de usuarios
-            }else{
-                users usr1 = new users(usrn, pass);
-                usuarios.add(usr1);
-                //Mensaje de éxito
-                JOptionPane.showMessageDialog(null, "Usuario Agregado", "Éxito", JOptionPane.INFORMATION_MESSAGE); 
-            }
-            
-        }
-        }catch (Exception e){
-            e.getMessage();
-        }
+        calculos.agregarUsuario(usrn, pass);
 
 
     }//GEN-LAST:event_addBtnActionPerformed

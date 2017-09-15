@@ -14,12 +14,19 @@ import javax.swing.JOptionPane;
  */
 public class Factura extends javax.swing.JFrame {
 Random rn = new Random();
+private int tipo;
+private String hora;
     /**
      * Creates new form Factura
      */
-    public Factura() {
+
+    private Factura(){  
+
+    }
+    public Factura(int Tipo, String Hora) {
         initComponents();
-        setNumFactura();
+        tipo = Tipo;
+        hora = Hora;
     }
 
     /**
@@ -43,6 +50,11 @@ Random rn = new Random();
         acpBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
@@ -64,7 +76,7 @@ Random rn = new Random();
         numOrdenLbl.setText("122");
 
         fechaLbl.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        fechaLbl.setText("Fecha: 17/08/2017");
+        fechaLbl.setText("Fecha: 22/09/2017");
 
         efectivoLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         efectivoLbl.setText("Por favor, tenga el efectivo listo y muestre el siguiente mensaje para pagar");
@@ -150,6 +162,27 @@ Random rn = new Random();
         System.exit(0);
     }//GEN-LAST:event_acpBtnActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //Se pone un número de orden para el usuario, que es un random entre 1 y 1000
+        int numOrden = rn.nextInt((1000-1)+1)+1;
+        //El label toma el valor del random
+        numOrdenLbl.setText(numOrden + "");
+        
+        //Se esconde lo necesario
+        tarjetaLbl.setVisible(false);
+        efectivoLbl.setVisible(false);
+        HoraLbl.setText(hora);
+        
+        //Se muestra la factura con toda su informacion
+        if (tipo == 0){ 
+            //Se pone el mensaje respectivo si el usuario paga con efectivo
+            efectivoLbl.setVisible(true); 
+        } else if (tipo == 1){
+            //Se pone el mensaje respectivo si el usuario paga con tarjeta
+            tarjetaLbl.setVisible(true);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -184,29 +217,7 @@ Random rn = new Random();
             }
         });
     }
-    //Se pone un número de orden para el usuario, que es un random entre 1 y 1000
-    public void setNumFactura (){
-        int numOrden = rn.nextInt((1000-1)+1)+1;
-        //El label toma el valor del random
-        numOrdenLbl.setText(numOrden + "");
-    }
     
-    //Se muestra la factura con toda la información
-    public void mostrarFactura (int tipo, String hora) {
-        //Se esconde lo necesario
-        tarjetaLbl.setVisible(false);
-        efectivoLbl.setVisible(false);
-        HoraLbl.setText(hora);
-        
-        if (tipo == 0){ 
-            //Se pone el mensaje respectivo si el usuario paga con efectivo
-            efectivoLbl.setVisible(true); 
-        } else if (tipo == 1){
-            //Se pone el mensaje respectivo si el usuario paga con tarjeta
-            tarjetaLbl.setVisible(true);
-        }
- 
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CompraLbl;

@@ -15,8 +15,9 @@ public class Orden extends javax.swing.JFrame {
     //Variables de instancia
     private int total;
     private String hora;
-    private int HoraCe, HoraAb, nHora;
-    Factura compra = new Factura();
+    private boolean verificar;
+    private int HoraCe, HoraAb;
+    Calculos calculos = new Calculos();
     /**
      * Creates new form Orden sin parámetros
      */
@@ -26,11 +27,11 @@ public class Orden extends javax.swing.JFrame {
         initComponents();
     }
     //Se crea el form con los parámetros del precio total del menú, la hora de apertura y la hora de cierre
-    public Orden(int total, int horaAb, int horaCe) {
+    public Orden(int pTotal, int horaAb, int horaCe) {
         initComponents();
         HoraAb = horaAb;
         HoraCe = horaCe;
-        setTotal(total);
+        total = pTotal;
     }
     
     /**
@@ -55,6 +56,11 @@ public class Orden extends javax.swing.JFrame {
         avisoLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
@@ -196,7 +202,15 @@ public class Orden extends javax.swing.JFrame {
     //Si se da clic al botón aceptar
     private void AceptarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptarBtnMouseClicked
         //Se ejecuta el método horacorrecta con los parámetros de hora apertura y hora de cierre
-        horaCorrecta(HoraAb, HoraCe);
+        verificar = calculos.horaCorrecta(HoraAb, HoraCe, horaEntregaTextField.getText(), horaEntregaTextField);
+        
+        if (verificar==true) {    
+            AceptarBtn.setVisible(false);
+            metodoPagoLbl.setVisible(true);
+            tarjetaLbl.setVisible(true);
+            EfectivoLbl.setVisible(true);      
+            hora = horaEntregaTextField.getText();
+         }
     }//GEN-LAST:event_AceptarBtnMouseClicked
 
     private void tarjetaLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tarjetaLblMouseClicked
@@ -212,57 +226,26 @@ public class Orden extends javax.swing.JFrame {
              } 
     }//GEN-LAST:event_horaEntregaTextFieldKeyTyped
 
-    //Se pone el total de la orden (del form menu) en el resumen de la orden (form orden)
-    public void setTotal (int total) {
-        this.total = total;
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         pagoLbl.setText(total+"");
         metodoPagoLbl.setVisible(false);
         tarjetaLbl.setVisible(false);
         EfectivoLbl.setVisible(false);
-    }
-    
-    //Verifica si la hora está bien o mal
-    public void horaCorrecta (int horaAb, int horaCe){ 
-        //Obtiene la hora ingresada del textbox de la hora
-        hora = horaEntregaTextField.getText();
-        //Convierte la hora en un número
-        nHora = Integer.parseInt(hora.substring(0,2) + hora.substring(3,5));
-        //Si la hora contiene más de 4 caracteres entonces sí cumple con el formato
-        if (hora.length()>4) {
-            //Si el número de la hora que ingreso el usuario está entre la hora de apertura y cierre...
-           if (nHora >= horaAb && nHora <= horaCe){
-              //La hora es correcta y se muestran las opciones de pago
-               JOptionPane.showMessageDialog(null, "Hora ingresada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-              horaEntregaTextField.disable();
-              AceptarBtn.setVisible(false);
-              metodoPagoLbl.setVisible(true);
-              tarjetaLbl.setVisible(true);
-              EfectivoLbl.setVisible(true); 
-           }else{
-             //Se muestra el error que el restaurante no está abierto a esa hora
-            JOptionPane.showMessageDialog(null, "El restaurante no está abierto a esa hora", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-           }
-      
-             
-        } else {
-            //Si el formato de la hora está equivocada, se muestra un error
-            JOptionPane.showMessageDialog(null, "Por favor, ingrese una hora valida", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-        }
+    }//GEN-LAST:event_formWindowOpened
         
-    }
-    
     //Depende de si eligió pago en efectivo o tarjeta, que haga tal cosa
     public void showDetails(int x){ 
         //Si le da clic a efectivo
         if (x==0){
-            compra.mostrarFactura(0, hora);
+            Factura compra = new Factura(0, hora);
+            compra.setVisible(true);
         //Si le da clic a tarjeta
         } else if (x==1) {
-            compra.mostrarFactura(1, hora);
+            Factura compra = new Factura(1, hora);
+            compra.setVisible(true);
         }
-        //Se muestra el form de factura
-        compra.setVisible(true);
-        this.hide();
+        //Se muestra el form de factura 
+        this.setVisible(false);
     }
     
     /**

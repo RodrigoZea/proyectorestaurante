@@ -16,8 +16,10 @@ import javax.swing.JOptionPane;
 
 //Variables de instancia
 public class Menu extends javax.swing.JFrame {
+public static ArrayList<users> usuariosMenu = new ArrayList<>();
+Calculos calculos = new Calculos();
 int precioC, precioB, precioCh, pTotal = 0;
-int HoraAb, HoraCe;
+int HoraAb, HoraCe, decision;
 
     /**
      * Creates new form Menu
@@ -29,7 +31,7 @@ int HoraAb, HoraCe;
     //Constructor con parámetros, dependiendo la hora de apertura, cierre y la opción de restaurante que usó
     public Menu(int x, int horaAb, int horaCe) {
         initComponents();
-        showOpts(x);
+        decision = x;
         pasarHora(horaAb, horaCe);
     }
     /**
@@ -56,6 +58,11 @@ int HoraAb, HoraCe;
         ordLbl3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
@@ -197,7 +204,7 @@ int HoraAb, HoraCe;
         if (pTotal > 0){
            Orden order = new Orden(pTotal, HoraAb, HoraCe);
            order.setVisible(true);
-           this.hide();
+           this.setVisible(false);
         } else {
         //Se muestra un error, que debe seleccionar opciones    
             JOptionPane.showMessageDialog(null, "Por favor, seleccione un mínimo de 2 opciones", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -207,157 +214,40 @@ int HoraAb, HoraCe;
     
     private void comidaCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comidaCbxActionPerformed
         //Si cambia el valor del combobox entonces que se consigan los precios
-      setPreciosC();
-      sumar();
+      precioC = calculos.setPreciosC(comidaCbx);
+      pTotal = calculos.sumar(ordLbl3,precioC,precioB,precioCh);
+      ordLbl3.setText(pTotal+"");
     }//GEN-LAST:event_comidaCbxActionPerformed
 
     private void bebidaCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bebidaCbxActionPerformed
         //Si cambia el valor del combobox de bebida entonces que se consigan los precios
-       setPreciosB();
-       sumar();
+       precioB = calculos.setPreciosB(bebidaCbx);
+       pTotal = calculos.sumar(ordLbl3,precioC,precioB,precioCh);
+       ordLbl3.setText(pTotal+"");
     }//GEN-LAST:event_bebidaCbxActionPerformed
 
     private void chipsCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chipsCbxActionPerformed
         //Si cambia el valor del combobox de chips entonces que se consigan los precios
-        setPreciosCh();
-        sumar();
+        precioCh = calculos.setPreciosCh(chipsCbx);
+        pTotal = calculos.sumar(ordLbl3,precioC,precioB,precioCh);
+        ordLbl3.setText(pTotal+"");
     }//GEN-LAST:event_chipsCbxActionPerformed
 
     //NSU
     private void continueBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continueBtnMouseClicked
        // TODO add your handling code here:
     }//GEN-LAST:event_continueBtnMouseClicked
-    
-    public void showOpts(int x){ 
-        //Un switch dependiendo de qué restaurante eligió
-        switch (x){
-            case 1:
-                //Si eligió GoGreen...
-                comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "iGO Indic", "iGO Cesar", "iGO Club", "Ensalada" }));
-                bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pepsi Light", "Limonada Piña", "Agua Pura", "Limonada Fresa" }));
-                chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Lays", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
-                break;
-            case 2:
-                //Bagel Bros...
-                comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pollo Cesar", "Pavocado", "Napoli", "Grilled Cheese" }));
-                bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pepsi", "Mirinda", "Agua Pura", "7 Up" }));
-                chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Lays", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
-                break;
-            case 3:
-                //Café Gitane...
-                comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Gitane Pollo", "Quesadilla", "Croissant", "Hamburgesa" }));
-                bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Horchata", "Naranjada", "Jamaica", "Limonada" }));
-                chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Brownie", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
-                break;
-            case 4:
-                //Picnic...
-                comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pan con Huevo", "Pan con Jamón", "Pan con Frijol", "Sopa" }));
-                bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Aloe Vera", "Mountain Dew", "Pepsi", "Mirinda" }));
-                chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Papas", "Dorito Verde", "Dorito Rojo", "Lays Verdes" }));
-                break;
-        }
-    }
-    public void setPreciosC(){ 
-        //Se ponen los precios de cada "plato principal"
-        if (comidaCbx.getSelectedItem().equals("iGO Indic")){
-            precioC = 25;
-        }else if (comidaCbx.getSelectedItem().equals("iGO Cesar")){
-            precioC = 25;
-        }else if (comidaCbx.getSelectedItem().equals("iGO Club")){
-            precioC = 25;
-        }else if (comidaCbx.getSelectedItem().equals("Ensalada")){
-            precioC = 35;
-        }else if (comidaCbx.getSelectedItem().equals("Pollo Cesar")){
-            precioC = 36;
-        }else if (comidaCbx.getSelectedItem().equals("Pavocado")){
-            precioC = 35;
-        }else if (comidaCbx.getSelectedItem().equals("Napoli")){
-            precioC = 40;
-        }else if (comidaCbx.getSelectedItem().equals("Grilled Cheese")){
-            precioC = 20;
-        }else if (comidaCbx.getSelectedItem().equals("Gitane Pollo")){
-            precioC = 38;
-        }else if (comidaCbx.getSelectedItem().equals("Quesadilla")){
-            precioC = 32;
-        }else if (comidaCbx.getSelectedItem().equals("Croissant")){
-            precioC = 20;
-        }else if (comidaCbx.getSelectedItem().equals("Hamburgesa")){
-            precioC = 28;
-        }else if (comidaCbx.getSelectedItem().equals("Pan con Huevo")){
-            precioC = 15;
-        }else if (comidaCbx.getSelectedItem().equals("Pan con Jamon")){
-            precioC = 13;
-        }else if (comidaCbx.getSelectedItem().equals("Pan con Frijol")){
-            precioC = 23;
-        }else if (comidaCbx.getSelectedItem().equals("Sopa")){
-            precioC = 25;
-        }else if (comidaCbx.getSelectedItem().equals("Sin opción")){
-            precioC = 0;
-        }
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         
+        calculos.showOpts(decision, comidaCbx, bebidaCbx, chipsCbx);
         
-        
-    }
-    public void setPreciosB(){
-       //Se ponen los precios de cada tipo de bebida
-       if (bebidaCbx.getSelectedItem().equals("Sin opción")){
-            precioB = 0;
-        }else if (bebidaCbx.getSelectedItem().equals("Pepsi Light")){
-            precioB = 8;
-        }else if (bebidaCbx.getSelectedItem().equals("Limonada Piña")){
-            precioB = 5;
-        }else if (bebidaCbx.getSelectedItem().equals("Agua Pura")){
-            precioB = 5;
-        }else if (bebidaCbx.getSelectedItem().equals("Limonada Fresa")){
-            precioB = 7;
-        }else if (bebidaCbx.getSelectedItem().equals("Pepsi")){
-            precioB = 7;
-        }else if (bebidaCbx.getSelectedItem().equals("Mirinda")){
-            precioB = 7;
-        }else if (bebidaCbx.getSelectedItem().equals("7 Up")){
-            precioB = 7;
-        }else if (bebidaCbx.getSelectedItem().equals("Aloe Vera")){
-            precioB = 12;
-        }else if (bebidaCbx.getSelectedItem().equals("Mountain Dew")){
-            precioB = 7;
-        }else if (bebidaCbx.getSelectedItem().equals("Horchata")){
-            precioB = 7;
-        }else if (bebidaCbx.getSelectedItem().equals("Jamaica")){
-            precioB = 7;
-        }else if (bebidaCbx.getSelectedItem().equals("Naranjada")){
-            precioB = 7;
-        }else if (bebidaCbx.getSelectedItem().equals("Limonada")){
-            precioB = 7;
-        }
-    }
-    public void setPreciosCh(){ 
-        //Se ponen los precios de cada opción de chips o snack extra
-        if (chipsCbx.getSelectedItem().equals("Sin opción")){
-            precioCh = 0;
-        }else if (chipsCbx.getSelectedItem().equals("Lays")){
-            precioCh = 4;
-        }else if (chipsCbx.getSelectedItem().equals("Lays Verdes")){
-            precioCh = 4;
-        }else if (chipsCbx.getSelectedItem().equals("Dorito Rojo")){
-            precioCh = 5;
-        }else if (chipsCbx.getSelectedItem().equals("Dorito Verde")){
-            precioCh = 5;
-        }else if (chipsCbx.getSelectedItem().equals("Brownie")){
-            precioCh = 7;
-        }else if (chipsCbx.getSelectedItem().equals("Papas")){
-            precioCh = 10;
-        }
-    }
+    }//GEN-LAST:event_formWindowOpened
+
     public void pasarHora(int horaAb, int horaCe){
         //Se envía la hora de apertura y cierre al próximo form
         HoraAb = horaAb;
         HoraCe = horaCe;
-    }
-    public void sumar(){
-        //Suma los precios de comida, bebida y los chips
-        pTotal = precioC + precioB + precioCh;
-        ordLbl3.setText(pTotal + "");
-        //order.setTotal(pTotal);
     }
     /**
      * @param args the command line arguments
