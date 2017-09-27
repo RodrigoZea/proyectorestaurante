@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- *
+ * Se encarga en realizar los calculos que se deben utilizar
  * @author Oscar Juarez, Rodrigo Zea, Andres Quan
  * @version: 14/09/17
  */
@@ -20,6 +20,11 @@ public class Calculos {
         String user = "", pass = "";    
     }
 
+    /**
+     * Se encarga de observar si ya existe el usuario en la lista o no.
+     * @param usuario
+     * @param contra
+     */
     public void Validar(String usuario, String contra) {
         
         boolean cuentaE = false;
@@ -51,6 +56,11 @@ public class Calculos {
         
     }
     
+    /**
+     * Agrega un usuario al ArrayList de users/usuarios.
+     * @param usuario
+     * @param contra
+     */
     public void agregarUsuario(String usuario, String contra){
         boolean exists = false;
         
@@ -89,6 +99,10 @@ public class Calculos {
         
     }
     
+    /**
+     * Muestra los detalles de las opciones de un restaurante a partir de la opcion que el usuario elija
+     * @param x
+     */
     public void showDetails(int x){
         
         String nombre = "", descripcion = "", horario = "";
@@ -147,6 +161,13 @@ public class Calculos {
         
     }
     
+    /**
+     * Depende del restaurante que eligio, las opciones del ComboBox cambiaran dinamicamente
+     * @param x
+     * @param comidaCbx
+     * @param bebidaCbx
+     * @param chipsCbx
+     */
     public void showOpts(int x, JComboBox comidaCbx, JComboBox bebidaCbx, JComboBox chipsCbx){
         
         switch (x){
@@ -178,6 +199,11 @@ public class Calculos {
         
     }
     
+    /**
+     * Se configuran los precios de los platos principales
+     * @param comidaCbx
+     * @return precioC
+     */
     public int setPreciosC(JComboBox comidaCbx){ 
         //Se ponen los precios de cada "plato principal"
         
@@ -224,6 +250,11 @@ public class Calculos {
         
     }
     
+    /**
+     * Se configuran los precios de las bebidas de un restaurante
+     * @param bebidaCbx
+     * @return precioB
+     */
     public int setPreciosB(JComboBox bebidaCbx){
        //Se ponen los precios de cada tipo de bebida
        
@@ -262,6 +293,11 @@ public class Calculos {
     return precioB;
     }
     
+    /**
+     * Se configuran los precios de los acompanamientos o chips que ofrece un restaurante
+     * @param chipsCbx
+     * @return precioCh
+     */
     public int setPreciosCh(JComboBox chipsCbx){ 
         //Se ponen los precios de cada opción de chips o snack extra
         
@@ -287,6 +323,14 @@ public class Calculos {
         
     }
     
+    /**
+     * Suma el total de la orden, a partir del precio del plato principal, bebida y chips
+     * @param ordLbl3
+     * @param precioC
+     * @param precioB
+     * @param precioCh
+     * @return pTotal
+     */
     public int sumar(JLabel ordLbl3, int precioC, int precioB, int precioCh){
         //Suma los precios de comida, bebida y los chips
         
@@ -297,6 +341,15 @@ public class Calculos {
     }
     
     //Verifica si la hora coincide con el restaurante elegido
+
+    /**
+     * Verifica si el restaurante si se encuentra abierto a la hora que pidio la orden el usuario
+     * @param horaAb
+     * @param horaCe
+     * @param hora
+     * @param espacio
+     * @return verificar
+     */
     public boolean horaCorrecta (int horaAb, int horaCe, String hora, JTextField espacio){ 
 
         boolean verificar = false;

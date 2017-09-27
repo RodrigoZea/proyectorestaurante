@@ -2,15 +2,10 @@
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Oscar
+ * Le despliega la factura de su orden al usuario
+ * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
+ * @version 1.0
  */
 public class Factura extends javax.swing.JFrame {
 Random rn = new Random();
@@ -23,6 +18,12 @@ private String hora;
     private Factura(){  
 
     }
+
+    /**
+     * Crea una form Factura a partir de los parametros enviados
+     * @param Tipo
+     * @param Hora
+     */
     public Factura(int Tipo, String Hora) {
         initComponents();
         tipo = Tipo;

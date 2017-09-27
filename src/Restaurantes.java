@@ -2,14 +2,8 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * Permite al usuario seleccionar el restaurante que desee
  * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
  * @version 1.0
  */
@@ -18,8 +12,8 @@ public class Restaurantes extends javax.swing.JFrame {
     Calculos calculos = new Calculos();
     Menu menu = new Menu();
     public static ArrayList<users> usuariosRest = new ArrayList<>();
-    String descripcion, horario, nombre;
-    int horaAb, horaCe;
+   /*String descripcion, horario, nombre;
+    int horaAb, horaCe;*/
     /**
      * Creates new form Restaurantes
      */

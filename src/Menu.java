@@ -2,14 +2,8 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * Le despliega al usuario todas las opciones de alimentos que proporciona el restaurante
  * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
  * @version 1.0
  */
@@ -29,6 +23,13 @@ int HoraAb, HoraCe, decision;
 
     }
     //Constructor con parámetros, dependiendo la hora de apertura, cierre y la opción de restaurante que usó
+
+    /**
+     * Crea una form Menu a partir de los parametros enviados
+     * @param x
+     * @param horaAb
+     * @param horaCe
+     */
     public Menu(int x, int horaAb, int horaCe) {
         initComponents();
         decision = x;
@@ -244,6 +245,11 @@ int HoraAb, HoraCe, decision;
         
     }//GEN-LAST:event_formWindowOpened
 
+    /**
+     * Envia la horra de apertura y cierre al siguiente form
+     * @param horaAb
+     * @param horaCe
+     */
     public void pasarHora(int horaAb, int horaCe){
         //Se envía la hora de apertura y cierre al próximo form
         HoraAb = horaAb;

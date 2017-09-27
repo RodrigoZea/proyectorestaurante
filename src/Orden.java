@@ -1,14 +1,9 @@
 
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
+ * Le despliega un resumen de su orden seleccionada al usuario
  * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
  */
 public class Orden extends javax.swing.JFrame {
@@ -27,6 +22,13 @@ public class Orden extends javax.swing.JFrame {
         initComponents();
     }
     //Se crea el form con los parámetros del precio total del menú, la hora de apertura y la hora de cierre
+
+    /**
+     * Crea el form con parametros de hora de apertura y de cierre
+     * @param pTotal
+     * @param horaAb
+     * @param horaCe
+     */
     public Orden(int pTotal, int horaAb, int horaCe) {
         initComponents();
         HoraAb = horaAb;
@@ -234,6 +236,11 @@ public class Orden extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
         
     //Depende de si eligió pago en efectivo o tarjeta, que haga tal cosa
+
+    /**
+     * Le muestra las opciones de pago al usuario dependiendo de la que eliga
+     * @param x
+     */
     public void showDetails(int x){ 
         //Si le da clic a efectivo
         if (x==0){

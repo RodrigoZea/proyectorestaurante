@@ -2,14 +2,9 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
+ * Permite al usuario registrarse o ingresar al sistema para poder pedir una orden.
  * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
  * @version 1.0
  */
@@ -20,7 +15,7 @@ public class Login extends javax.swing.JFrame {
     Restaurantes restaurantes = new Restaurantes();
     String usrn, pass;
     boolean unoRegistrado = false;
-    boolean exists, cuentaE, nv;
+    boolean cuentaE, nv;
     
     /**
      * Crea una nueva Forma tipo Login
@@ -199,7 +194,6 @@ public class Login extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         //Se consigue lo que hay escrito en los textbox de User y Pass
         //Boolean de que existe se pone como falso porque aún no se crea la cuenta
-        exists = false;
         usrn = UserTF.getText();
         pass = clavePF.getText();
         
@@ -221,8 +215,10 @@ public class Login extends javax.swing.JFrame {
         rgrLbl.setVisible(false);
     }//GEN-LAST:event_rgrLblMouseClicked
 
-    //Se limpia el texto
-    private void borrarTxt(){
+    /**
+     * Se encarga de borrar el texto en los textfields respectivos.
+     */
+    public void borrarTxt(){
         UserTF.setText("");
         clavePF.setText("");
     }
