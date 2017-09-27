@@ -155,7 +155,7 @@ public class gerenteVista extends javax.swing.JFrame {
             
         }
         
-        
+        calculos.showOrdenes(jTextArea1, ordenesGerente);
     }//GEN-LAST:event_formWindowOpened
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

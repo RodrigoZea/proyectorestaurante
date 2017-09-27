@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -430,6 +431,15 @@ public class Calculos {
         
     }
     
+    public void showOrdenes(JTextArea texto, ArrayList<Ordenes> ordenes){
+        String cdn="test";
+        
+        for(Ordenes ord: ordenes){ 
+            cdn += ord.getDetalles()+"\n";
+        }
+        
+        texto.setText(cdn);
+    }
     
     
 }

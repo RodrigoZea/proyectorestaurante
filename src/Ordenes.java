@@ -11,6 +11,7 @@ public class Ordenes {
     String chips;
     int total;
     int restaurante;
+    //Deberíamos de agregar la Hora. Porque si no... ¿Cómo sabrán los trabajadores a qué hora tiene que estar listo todo?
     
     public Ordenes(int orden, String comida, String bebida, String chips, int total, int restaurante){
         
@@ -69,7 +70,14 @@ public class Ordenes {
     public void setRestaurante(int restaurante) {
         this.restaurante = restaurante;
     }
-
+    
+    public String getDetalles(){ 
+        String cadena="";
+        cadena = "Numero de orden: " + getOrden() + "\n" + 
+                getComida() + " " + getBebida() + " " + getChips() + "\n";
+        
+        return cadena;
+    }
 
     
 }
