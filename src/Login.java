@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     //Variables de Instancia
     public static ArrayList<users> usuarios = new ArrayList<>(); 
+    public static ArrayList<Ordenes> ordenesLogin = new ArrayList<Ordenes>(); 
     Calculos calculos = new Calculos();
     Restaurantes restaurantes = new Restaurantes();
     String usrn, pass;
@@ -45,8 +46,14 @@ public class Login extends javax.swing.JFrame {
         loginLbl = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
         rgrLbl = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
@@ -96,6 +103,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Gerente de tienda");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,6 +131,10 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(regrBtn)))))
                 .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +157,9 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(regrBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addBtn)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,12 +185,19 @@ public class Login extends javax.swing.JFrame {
        
         calculos.usuariosCalc = usuarios;
         restaurantes.usuariosRest = usuarios;
+        restaurantes.ordenesRest = ordenesLogin;
         
        usrn = UserTF.getText();
        pass = clavePF.getText();
               
-       calculos.Validar(usrn, pass);
+       boolean validar = calculos.Validar(usrn, pass);
            
+       if (validar == true) {
+           
+           restaurantes.setVisible(true);
+           this.setVisible(false);
+           
+       }
     }//GEN-LAST:event_vlnBtnActionPerformed
 
     //La acción que realiza el botón de "Registrar"
@@ -214,6 +241,31 @@ public class Login extends javax.swing.JFrame {
         addBtn.setVisible(false);
         rgrLbl.setVisible(false);
     }//GEN-LAST:event_rgrLblMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        users usuarioAdmin = new users("admin", "admin");
+        usuarios.add(usuarioAdmin);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+        calculos.usuariosCalc = usuarios;
+        restaurantes.usuariosRest = usuarios;
+        
+        usrn = UserTF.getText();
+        pass = clavePF.getText();
+       
+        boolean validarAdmin = calculos.validarAdmin(usrn, pass);
+        
+        if (validarAdmin==true ) {
+            
+            gerenteVista gerente = new gerenteVista();
+            gerente.setVisible(true);
+            this.setVisible(false);
+            gerente.ordenesGerente = ordenesLogin;
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * Se encarga de borrar el texto en los textfields respectivos.
@@ -263,6 +315,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField UserTF;
     private javax.swing.JButton addBtn;
     private javax.swing.JPasswordField clavePF;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jClaveL;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jUsuarioL;

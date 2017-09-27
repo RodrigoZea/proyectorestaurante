@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 //Variables de instancia
 public class Menu extends javax.swing.JFrame {
 public static ArrayList<users> usuariosMenu = new ArrayList<>();
+public static ArrayList<Ordenes> ordenesMenu = new ArrayList<Ordenes>(); 
 Calculos calculos = new Calculos();
 int precioC, precioB, precioCh, pTotal = 0;
 int HoraAb, HoraCe, decision;
@@ -204,6 +205,16 @@ int HoraAb, HoraCe, decision;
         //Si el precio es mayor a 0, que el usuario pueda proceder a la próxima pantalla
         if (pTotal > 0){
            Orden order = new Orden(pTotal, HoraAb, HoraCe);
+           
+           String comida = (String) comidaCbx.getSelectedItem();
+           String bebida = (String) bebidaCbx.getSelectedItem();
+           String chips = (String) chipsCbx.getSelectedItem();
+           
+           Ordenes orden = new Ordenes(1, comida, bebida, chips, pTotal, decision);
+           ordenesMenu.add(orden);
+           
+           order.ordenesOrden = ordenesMenu;
+           
            order.setVisible(true);
            this.setVisible(false);
         } else {

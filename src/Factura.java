@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
@@ -9,14 +10,16 @@ import javax.swing.JOptionPane;
  */
 public class Factura extends javax.swing.JFrame {
 Random rn = new Random();
+Login login = new Login();
+public static ArrayList<Ordenes> ordenesFactura = new ArrayList<Ordenes>();
 private int tipo;
 private String hora;
     /**
      * Creates new form Factura
      */
 
-    private Factura(){  
-
+    public Factura(){  
+        initComponents();
     }
 
     /**
@@ -160,7 +163,9 @@ private String hora;
     private void acpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acpBtnActionPerformed
         //Si le da aceptar, que se cierre el programa porque ya se completó 
         JOptionPane.showMessageDialog(null, "¡Que tenga un buen día!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-        System.exit(0);
+        this.setVisible(false);
+        login.setVisible(true);
+        login.ordenesLogin = ordenesFactura;
     }//GEN-LAST:event_acpBtnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

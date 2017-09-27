@@ -12,6 +12,7 @@ public class Restaurantes extends javax.swing.JFrame {
     Calculos calculos = new Calculos();
     Menu menu = new Menu();
     public static ArrayList<users> usuariosRest = new ArrayList<>();
+    public static ArrayList<Ordenes> ordenesRest = new ArrayList<Ordenes>(); 
    /*String descripcion, horario, nombre;
     int horaAb, horaCe;*/
     /**
@@ -159,6 +160,7 @@ public class Restaurantes extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         menu.usuariosMenu = usuariosRest;
+        menu.ordenesMenu = ordenesRest;
     }//GEN-LAST:event_formWindowOpened
     
     //Que se muestren los detalles dependiendo del restaurante que se eligió

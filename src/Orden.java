@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -12,6 +13,8 @@ public class Orden extends javax.swing.JFrame {
     private String hora;
     private boolean verificar;
     private int HoraCe, HoraAb;
+    Factura factura = new Factura();
+    public static ArrayList<Ordenes> ordenesOrden = new ArrayList<Ordenes>();
     Calculos calculos = new Calculos();
     /**
      * Creates new form Orden sin parámetros
@@ -218,6 +221,7 @@ public class Orden extends javax.swing.JFrame {
     private void tarjetaLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tarjetaLblMouseClicked
         //Si le da clic a tarjeta, que se mande el parámetro opción 1
         showDetails(1);
+        factura.ordenesFactura = ordenesOrden;
     }//GEN-LAST:event_tarjetaLblMouseClicked
 
     private void horaEntregaTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_horaEntregaTextFieldKeyTyped

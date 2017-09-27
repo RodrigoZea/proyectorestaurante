@@ -25,9 +25,10 @@ public class Calculos {
      * @param usuario
      * @param contra
      */
-    public void Validar(String usuario, String contra) {
+    public boolean Validar(String usuario, String contra) {
         
         boolean cuentaE = false;
+        boolean confirmar;
         Login entrar = new Login();
         
         // Busca si existe el usuario o no
@@ -44,16 +45,37 @@ public class Calculos {
         if (cuentaE == true ){ 
             //Se muestra un aviso de verificación completa
             JOptionPane.showMessageDialog(entrar, "Verificación completa", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            //Se muestra la nueva form
-            Restaurantes rest = new Restaurantes();
-            entrar.setVisible(false);
-            rest.setVisible(true);
+            confirmar = true;
+            
         }else{
             //Si no existe entonces que muestre un error
             JOptionPane.showMessageDialog(entrar, "Usuario o contraseña incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
+            confirmar = false;
             
         }
         
+        return confirmar; 
+        
+    }
+    
+    public boolean validarAdmin(String usuario, String contra){
+        
+        boolean confirmar = false;
+        Login entrar = new Login();
+        
+        if (usuario.equals("admin") && contra.equals("admin")) {
+            
+            confirmar = true;
+            JOptionPane.showMessageDialog(entrar, "Bienvenido administrador!", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        
+        } else {
+            
+            confirmar = false;
+            JOptionPane.showMessageDialog(entrar, "Usted no es un administrador", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        
+        return confirmar;
     }
     
     /**
@@ -379,5 +401,35 @@ public class Calculos {
         
         return verificar;
     }
+    
+    public void verProductos(ArrayList<Ordenes> lista, JComboBox comboBox, String restaurante, int decision){
+        
+        for(Ordenes x:lista){
+            
+            if (restaurante.equals("Go Green")){
+                
+                for (int i = 0; i < lista.size(); i++) {
+                    
+                    if (x.getRestaurante()==1){
+                        
+                        comboBox.addItem("Orden " + x.getOrden());
+                        
+                    } else if (x.getRestaurante()==2){
+                        
+                        comboBox.addItem("Orden " + x.getOrden());
+                        
+                    }
+                    
+                }
+                
+                
+            }
+            
+            
+        }
+        
+    }
+    
+    
     
 }
