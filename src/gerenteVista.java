@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -61,6 +62,7 @@ public class gerenteVista extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -198,6 +200,13 @@ public class gerenteVista extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(ordenesGerente.size()>0){
+            calculos.eliminarOrden(ordenesGerente, (int) jComboBox2.getSelectedItem());
+            calculos.verProductos(ordenesGerente, jComboBox2, (String) jComboBox1.getSelectedItem(), jTextArea1);
+        }else{ 
+            JOptionPane.showMessageDialog(null, "No hay ninguna orden por eliminar", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

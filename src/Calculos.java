@@ -22,7 +22,7 @@ public class Calculos {
     }
 
     /**
-     * Se encarga de observar si ya existe el usuario en la lista o no.
+     * Se encarga de observar si ya existe el usuario en la lista o no. Luego, permite ingresar al usuario al sistema.
      * @param usuario
      * @param contra
      */
@@ -59,6 +59,12 @@ public class Calculos {
         
     }
     
+    /**
+     * Valida si la información ingresada por el usuario pertenece a la del administrador.
+     * @param usuario
+     * @param contra
+     * @return confirmar
+     */
     public boolean validarAdmin(String usuario, String contra){
         
         boolean confirmar = false;
@@ -185,7 +191,7 @@ public class Calculos {
     }
     
     /**
-     * Depende del restaurante que eligio, las opciones del ComboBox cambiaran dinamicamente
+     * Depende del restaurante que eligió, se configura la hora de apertura y cierre del restaurante.
      * @param x
      * @param comidaCbx
      * @param bebidaCbx
@@ -403,6 +409,13 @@ public class Calculos {
         return verificar;
     }
     
+    /**
+     * Despliega todas las ordenes en una TextArea
+     * @param lista
+     * @param comboBox
+     * @param restaurante
+     * @param texto
+     */
     public void verProductos(ArrayList<Ordenes> lista, JComboBox comboBox, String restaurante, JTextArea texto){
         
         comboBox.removeAllItems();
@@ -413,7 +426,7 @@ public class Calculos {
             
             if ((restaurante.equals("Go Green")) && (x.getRestaurante()==1)){
                                   
-                comboBox.addItem("Orden " + x.getOrden());
+                comboBox.addItem(x.getOrden());
                 cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
                         "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
                 
@@ -421,7 +434,7 @@ public class Calculos {
                 
             } else if ((restaurante.equals("Bagel Bros")) && (x.getRestaurante()==2)) {
             
-                comboBox.addItem("Orden " + x.getOrden());
+                comboBox.addItem(x.getOrden());
                 cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
                         "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
                 
@@ -429,7 +442,7 @@ public class Calculos {
                 
             } else if ((restaurante.equals("Gitanne")) && (x.getRestaurante()==3)) {
                 
-                comboBox.addItem("Orden " + x.getOrden());
+                comboBox.addItem(x.getOrden());
                 cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
                         "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
                 
@@ -437,7 +450,8 @@ public class Calculos {
                 
             } else if ((restaurante.equals("Picnic")) && (x.getRestaurante()==4)) {
                 
-                comboBox.addItem("Orden " + x.getOrden());
+                //comboBox.addItem("Orden " + x.getOrden());
+                comboBox.addItem(x.getOrden());
                 cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
                         "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
                 
@@ -448,6 +462,19 @@ public class Calculos {
         }
     }
 
+    /**
+     * Elimina una orden seleccionada por el usuario
+     * @param lista
+     * @param orden
+     */
+    public void eliminarOrden(ArrayList<Ordenes> lista, int orden){
+        for(Ordenes x: lista){
+            if(x.getOrden() == orden){
+                lista.remove(x);
+                break;
+            }
+        }
+    }
     
     
 }

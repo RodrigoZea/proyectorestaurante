@@ -5,14 +5,13 @@
 
 public class Ordenes {
     
-    int orden;
-    String comida;
-    String bebida;
-    String chips;
-    String hora;
-    int total;
-    int restaurante;
-    //Deberíamos de agregar la Hora. Porque si no... ¿Cómo sabrán los trabajadores a qué hora tiene que estar listo todo?
+    private int orden;
+    private String comida;
+    private String bebida;
+    private String chips;
+    private String hora;
+    private int total;
+    private int restaurante;
     
     public Ordenes(int orden, String comida, String bebida, String chips, int total, int restaurante, String hora){
         
