@@ -15,6 +15,7 @@ public class Orden extends javax.swing.JFrame {
     private int HoraCe, HoraAb;
     Factura factura = new Factura();
     public static ArrayList<Ordenes> ordenesOrden = new ArrayList<Ordenes>();
+    public static ArrayList<users> usuariosOrden = new ArrayList<users>();
     Calculos calculos = new Calculos();
     /**
      * Creates new form Orden sin parámetros
@@ -221,7 +222,6 @@ public class Orden extends javax.swing.JFrame {
     private void tarjetaLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tarjetaLblMouseClicked
         //Si le da clic a tarjeta, que se mande el parámetro opción 1
         showDetails(1);
-        factura.ordenesFactura = ordenesOrden;
     }//GEN-LAST:event_tarjetaLblMouseClicked
 
     private void horaEntregaTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_horaEntregaTextFieldKeyTyped
@@ -249,14 +249,19 @@ public class Orden extends javax.swing.JFrame {
         //Si le da clic a efectivo
         if (x==0){
             Factura compra = new Factura(0, hora);
+            compra.ordenesFactura = ordenesOrden;
+            compra.usuariosFactura = usuariosOrden;
             compra.setVisible(true);
         //Si le da clic a tarjeta
         } else if (x==1) {
             Factura compra = new Factura(1, hora);
             compra.setVisible(true);
+            compra.ordenesFactura = ordenesOrden;
+            compra.usuariosFactura = usuariosOrden;
         }
         //Se muestra el form de factura 
         this.setVisible(false);
+        
     }
     
     /**

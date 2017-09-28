@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
 
 //Variables de instancia
 public class Menu extends javax.swing.JFrame {
-public static ArrayList<users> usuariosMenu = new ArrayList<>();
+public static ArrayList<users> usuariosMenu = new ArrayList<users>();
 public static ArrayList<Ordenes> ordenesMenu = new ArrayList<Ordenes>(); 
 Calculos calculos = new Calculos();
-int precioC, precioB, precioCh, pTotal = 0;
+int precioC, precioB, precioCh, pTotal = 0, numOrden=0;
 int HoraAb, HoraCe, decision;
 
     /**
@@ -35,6 +35,7 @@ int HoraAb, HoraCe, decision;
         initComponents();
         decision = x;
         pasarHora(horaAb, horaCe);
+        numOrden = ordenesMenu.size()+1;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -204,19 +205,22 @@ int HoraAb, HoraCe, decision;
     private void continueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueBtnActionPerformed
         //Si el precio es mayor a 0, que el usuario pueda proceder a la próxima pantalla
         if (pTotal > 0){
+            
            Orden order = new Orden(pTotal, HoraAb, HoraCe);
-           
+                      
            String comida = (String) comidaCbx.getSelectedItem();
            String bebida = (String) bebidaCbx.getSelectedItem();
            String chips = (String) chipsCbx.getSelectedItem();
            
-           Ordenes orden = new Ordenes(1, comida, bebida, chips, pTotal, decision);
-           ordenesMenu.add(orden);
+           Ordenes orden = new Ordenes(numOrden, comida, bebida, chips, pTotal, decision, "");           
+           ordenesMenu.add(orden);       
            
            order.ordenesOrden = ordenesMenu;
+           order.usuariosOrden = usuariosMenu;
            
            order.setVisible(true);
            this.setVisible(false);
+           
         } else {
         //Se muestra un error, que debe seleccionar opciones    
             JOptionPane.showMessageDialog(null, "Por favor, seleccione un mínimo de 2 opciones", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -251,9 +255,9 @@ int HoraAb, HoraCe, decision;
     }//GEN-LAST:event_continueBtnMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+
         calculos.showOpts(decision, comidaCbx, bebidaCbx, chipsCbx);
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     /**

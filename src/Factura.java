@@ -12,6 +12,7 @@ public class Factura extends javax.swing.JFrame {
 Random rn = new Random();
 Login login = new Login();
 public static ArrayList<Ordenes> ordenesFactura = new ArrayList<Ordenes>();
+public static ArrayList<users> usuariosFactura = new ArrayList<users>();
 private int tipo;
 private String hora;
     /**
@@ -164,8 +165,7 @@ private String hora;
         //Si le da aceptar, que se cierre el programa porque ya se completó 
         JOptionPane.showMessageDialog(null, "¡Que tenga un buen día!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         this.setVisible(false);
-        login.setVisible(true);
-        login.ordenesLogin = ordenesFactura;
+        login.setVisible(true);        
     }//GEN-LAST:event_acpBtnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -187,6 +187,13 @@ private String hora;
             //Se pone el mensaje respectivo si el usuario paga con tarjeta
             tarjetaLbl.setVisible(true);
         }
+        
+        ordenesFactura.get(ordenesFactura.size()-1).setHora(hora);
+        
+        
+        login.ordenesLogin = ordenesFactura;
+        login.usuarios = usuariosFactura;
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     //Variables de Instancia
-    public static ArrayList<users> usuarios = new ArrayList<>(); 
+    public static ArrayList<users> usuarios = new ArrayList<users>(); 
     public static ArrayList<Ordenes> ordenesLogin = new ArrayList<Ordenes>(); 
     Calculos calculos = new Calculos();
     Restaurantes restaurantes = new Restaurantes();
@@ -182,11 +182,7 @@ public class Login extends javax.swing.JFrame {
     private void vlnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vlnBtnActionPerformed
         // Cuando se le da clic al botón validar que haga esto
         // Se consigue los datos ingresados por el usuario en los textbox de user y password
-       
-        calculos.usuariosCalc = usuarios;
-        restaurantes.usuariosRest = usuarios;
-        restaurantes.ordenesRest = ordenesLogin;
-        
+
        usrn = UserTF.getText();
        pass = clavePF.getText();
               
@@ -245,6 +241,11 @@ public class Login extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         users usuarioAdmin = new users("admin", "admin");
         usuarios.add(usuarioAdmin);
+        
+        calculos.usuariosCalc = usuarios;
+        restaurantes.usuariosRest = usuarios;
+        restaurantes.ordenesRest = ordenesLogin;
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -9,17 +9,20 @@ public class Ordenes {
     String comida;
     String bebida;
     String chips;
+    String hora;
     int total;
     int restaurante;
     //Deberíamos de agregar la Hora. Porque si no... ¿Cómo sabrán los trabajadores a qué hora tiene que estar listo todo?
     
-    public Ordenes(int orden, String comida, String bebida, String chips, int total, int restaurante){
+    public Ordenes(int orden, String comida, String bebida, String chips, int total, int restaurante, String hora){
         
         this.orden = orden;
         this.comida = comida;
         this.bebida = bebida;
         this.chips = chips;
         this.total = total;
+        this.restaurante = restaurante;
+        this.hora = hora;
         
     }
 
@@ -70,6 +73,15 @@ public class Ordenes {
     public void setRestaurante(int restaurante) {
         this.restaurante = restaurante;
     }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+    
     
     public String getDetalles(){ 
         String cadena="";

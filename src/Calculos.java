@@ -403,43 +403,51 @@ public class Calculos {
         return verificar;
     }
     
-    public void verProductos(ArrayList<Ordenes> lista, JComboBox comboBox, String restaurante, int decision){
+    public void verProductos(ArrayList<Ordenes> lista, JComboBox comboBox, String restaurante, JTextArea texto){
+        
+        comboBox.removeAllItems();
+        texto.setText("No hay ordenes por el momento");
+        String cadena="";
         
         for(Ordenes x:lista){
             
-            if (restaurante.equals("Go Green")){
+            if ((restaurante.equals("Go Green")) && (x.getRestaurante()==1)){
+                                  
+                comboBox.addItem("Orden " + x.getOrden());
+                cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
+                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
                 
-                for (int i = 0; i < lista.size(); i++) {
-                    
-                    if (x.getRestaurante()==1){
-                        
-                        comboBox.addItem("Orden " + x.getOrden());
-                        
-                    } else if (x.getRestaurante()==2){
-                        
-                        comboBox.addItem("Orden " + x.getOrden());
-                        
-                    }
-                    
-                }
+                texto.setText(cadena);
                 
-                
-            }
+            } else if ((restaurante.equals("Bagel Bros")) && (x.getRestaurante()==2)) {
             
-            
+                comboBox.addItem("Orden " + x.getOrden());
+                cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
+                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
+                
+                texto.setText(cadena);
+                
+            } else if ((restaurante.equals("Gitanne")) && (x.getRestaurante()==3)) {
+                
+                comboBox.addItem("Orden " + x.getOrden());
+                cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
+                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
+                
+                texto.setText(cadena);
+                
+            } else if ((restaurante.equals("Picnic")) && (x.getRestaurante()==4)) {
+                
+                comboBox.addItem("Orden " + x.getOrden());
+                cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
+                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
+                
+                texto.setText(cadena);
+                
+            }    
+        
         }
-        
     }
-    
-    public void showOrdenes(JTextArea texto, ArrayList<Ordenes> ordenes){
-        String cdn="test";
-        
-        for(Ordenes ord: ordenes){ 
-            cdn += ord.getDetalles()+"\n";
-        }
-        
-        texto.setText(cdn);
-    }
+
     
     
 }

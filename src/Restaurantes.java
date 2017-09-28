@@ -11,7 +11,7 @@ public class Restaurantes extends javax.swing.JFrame {
     //Variables de instancia
     Calculos calculos = new Calculos();
     Menu menu = new Menu();
-    public static ArrayList<users> usuariosRest = new ArrayList<>();
+    public static ArrayList<users> usuariosRest = new ArrayList<users>();
     public static ArrayList<Ordenes> ordenesRest = new ArrayList<Ordenes>(); 
    /*String descripcion, horario, nombre;
     int horaAb, horaCe;*/
@@ -136,7 +136,8 @@ public class Restaurantes extends javax.swing.JFrame {
 
     private void ggLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ggLblMouseClicked
         //Si se hace clic a GoGreen que se pongan los detalles del método showDetails
-        calculos.showDetails(1);   
+        calculos.showDetails(1);
+        
         this.setVisible(false);
     }//GEN-LAST:event_ggLblMouseClicked
 
@@ -161,6 +162,7 @@ public class Restaurantes extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         menu.usuariosMenu = usuariosRest;
         menu.ordenesMenu = ordenesRest;
+        
     }//GEN-LAST:event_formWindowOpened
     
     //Que se muestren los detalles dependiendo del restaurante que se eligió
