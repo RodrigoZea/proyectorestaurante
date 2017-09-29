@@ -24,8 +24,8 @@ public class Calculos {
 
     /**
      * Se encarga de observar si ya existe el usuario en la lista o no. Luego, permite ingresar al usuario al sistema.
-     * @param usuario
-     * @param contra
+     * @param usuario: Almacena el nombre de usuario
+     * @param contra: Almacena la contraseña del usuario
      */
     public boolean Validar(String usuario, String contra) {
         
@@ -62,9 +62,9 @@ public class Calculos {
     
     /**
      * Valida si la información ingresada por el usuario pertenece a la del administrador.
-     * @param usuario
-     * @param contra
-     * @return confirmar
+     * @param usuario: Almacena el usuario en el textbox de login
+     * @param contra: Almacena la clave en el textbox de login
+     * @return confirmar: Booleano si el usuario es administrador o no
      */
     public boolean validarAdmin(String usuario, String contra){
         
@@ -88,8 +88,8 @@ public class Calculos {
     
     /**
      * Agrega un usuario al ArrayList de users/usuarios.
-     * @param usuario
-     * @param contra
+     * @param usuario: Almacena el usuario de la persona
+     * @param contra: Almacena la contraseña de la persona
      */
     public void agregarUsuario(String usuario, String contra){
         boolean exists = false;
@@ -131,7 +131,7 @@ public class Calculos {
     
     /**
      * Muestra los detalles de las opciones de un restaurante a partir de la opcion que el usuario elija
-     * @param x
+     * @param x: Es la opcion de restaurante elegida por el usuario
      */
     public void showDetails(int x){
         
@@ -193,10 +193,10 @@ public class Calculos {
     
     /**
      * Depende del restaurante que eligió, se configura la hora de apertura y cierre del restaurante.
-     * @param x
-     * @param comidaCbx
-     * @param bebidaCbx
-     * @param chipsCbx
+     * @param x: Opcion de restaurante del usuario
+     * @param comidaCbx: ComboBox de comida
+     * @param bebidaCbx: ComboBox de bebidas
+     * @param chipsCbx: ComboBox de chips
      */
     public void showOpts(int x, JComboBox comidaCbx, JComboBox bebidaCbx, JComboBox chipsCbx){
         
@@ -231,8 +231,8 @@ public class Calculos {
     
     /**
      * Se configuran los precios de los platos principales
-     * @param comidaCbx
-     * @return precioC
+     * @param comidaCbx: ComboBox de comida en el menu
+     * @return precioC: El precio de cada comida
      */
     public int setPreciosC(JComboBox comidaCbx){ 
         //Se ponen los precios de cada "plato principal"
@@ -282,8 +282,8 @@ public class Calculos {
     
     /**
      * Se configuran los precios de las bebidas de un restaurante
-     * @param bebidaCbx
-     * @return precioB
+     * @param bebidaCbx: ComboBox de bebida en el menu
+     * @return precioB: Almacena el precio de las bebidas
      */
     public int setPreciosB(JComboBox bebidaCbx){
        //Se ponen los precios de cada tipo de bebida
@@ -325,8 +325,8 @@ public class Calculos {
     
     /**
      * Se configuran los precios de los acompanamientos o chips que ofrece un restaurante
-     * @param chipsCbx
-     * @return precioCh
+     * @param chipsCbx: ComboBox de chips
+     * @return precioCh: Almacena el precio de los chips seleccionados
      */
     public int setPreciosCh(JComboBox chipsCbx){ 
         //Se ponen los precios de cada opción de chips o snack extra
@@ -355,11 +355,11 @@ public class Calculos {
     
     /**
      * Suma el total de la orden, a partir del precio del plato principal, bebida y chips
-     * @param ordLbl3
-     * @param precioC
-     * @param precioB
-     * @param precioCh
-     * @return pTotal
+     * @param ordLbl3: Label del total
+     * @param precioC: Precio de los chips
+     * @param precioB: Precio de la bebida
+     * @param precioCh: Precio de los chips
+     * @return pTotal: Almacena la suma de los precios de la comida seleccionada
      */
     public int sumar(JLabel ordLbl3, int precioC, int precioB, int precioCh){
         //Suma los precios de comida, bebida y los chips
@@ -374,11 +374,11 @@ public class Calculos {
 
     /**
      * Verifica si el restaurante si se encuentra abierto a la hora que pidio la orden el usuario
-     * @param horaAb
-     * @param horaCe
-     * @param hora
-     * @param espacio
-     * @return verificar
+     * @param horaAb: Hora de apertura
+     * @param horaCe: Hora de cierre
+     * @param hora: Hora en string
+     * @param espacio: TextField donde se escribe la hora
+     * @return verificar: Un boolean indicando si esta abierto o no
      */
     public boolean horaCorrecta (int horaAb, int horaCe, String hora, JTextField espacio){ 
 
@@ -411,11 +411,11 @@ public class Calculos {
     }
     
     /**
-     * Despliega todas las ordenes en una TextArea y en un combo box
-     * @param lista
-     * @param comboBox
-     * @param restaurante
-     * @param texto
+     * Despliega todas las ordenes en una TextArea
+     * @param lista: Es la lista de las ordenes por el usuario
+     * @param comboBox: Es el combobox donde se colocaran las ordenes
+     * @param restaurante: Es la opcion de restaurantes elegidos
+     * @param texto: TextArea donde se colocara la cadena de texto
      */
     public void verProductos(ArrayList<Ordenes> lista, JComboBox comboBox, String restaurante, JTextArea texto){
         
@@ -487,9 +487,9 @@ public class Calculos {
     }
 
     /**
-     * Elimina una orden seleccionada por el usuario
-     * @param lista
-     * @param orden
+     * Despacha una orden seleccionada por el usuario
+     * @param lista: La lista de ordenes del usuario
+     * @param orden: El numero de orden que se desea despachar
      */
     public void eliminarOrden(ArrayList<Ordenes> lista, int orden){
         for(Ordenes x: lista){
