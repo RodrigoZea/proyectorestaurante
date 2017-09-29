@@ -47,6 +47,7 @@ public class Login extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         rgrLbl = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        loginLbl1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -70,7 +71,7 @@ public class Login extends javax.swing.JFrame {
         jClaveL.setText("Clave:");
 
         vlnBtn.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        vlnBtn.setText("Validar");
+        vlnBtn.setText("Entrar");
         vlnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vlnBtnActionPerformed(evt);
@@ -78,14 +79,14 @@ public class Login extends javax.swing.JFrame {
         });
 
         regrBtn.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        regrBtn.setText("Registrar");
+        regrBtn.setText("Registrate");
         regrBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regrBtnActionPerformed(evt);
             }
         });
 
-        loginLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        loginLbl.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         loginLbl.setText("Login");
 
         addBtn.setText("Añadir");
@@ -95,53 +96,61 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        rgrLbl.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        rgrLbl.setText("Regresar");
+        rgrLbl.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        rgrLbl.setText("<-- Regresar");
         rgrLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rgrLblMouseClicked(evt);
             }
         });
 
-        jButton1.setText("Gerente de tienda");
+        jButton1.setText("Administrar Ordenes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        loginLbl1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        loginLbl1.setText("No tienes cuenta?");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rgrLbl)
-                    .addComponent(loginLbl)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jClaveL)
-                        .addComponent(jUsuarioL)
-                        .addComponent(UserTF)
-                        .addComponent(clavePF, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(vlnBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginLbl)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(regrBtn)))))
-                .addContainerGap(88, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                                .addComponent(jClaveL)
+                                .addComponent(jUsuarioL)
+                                .addComponent(UserTF)
+                                .addComponent(clavePF, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(regrBtn)
+                            .addComponent(loginLbl1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(vlnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 90, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(rgrLbl)
+                .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
                 .addComponent(rgrLbl)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(loginLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jUsuarioL)
@@ -151,15 +160,17 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jClaveL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clavePF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vlnBtn)
-                    .addComponent(regrBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                    .addComponent(addBtn))
+                .addGap(37, 37, 37)
+                .addComponent(loginLbl1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(regrBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,6 +217,8 @@ public class Login extends javax.swing.JFrame {
         regrBtn.setVisible(false);
         addBtn.setVisible(true);
         rgrLbl.setVisible(true);
+        loginLbl1.setVisible(false);
+        jButton1.setVisible(false);
     }//GEN-LAST:event_regrBtnActionPerformed
 
     //No se usó (NSU)
@@ -236,6 +249,8 @@ public class Login extends javax.swing.JFrame {
         regrBtn.setVisible(true);
         addBtn.setVisible(false);
         rgrLbl.setVisible(false);
+        loginLbl1.setVisible(true);
+        jButton1.setVisible(true);
     }//GEN-LAST:event_rgrLblMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -321,6 +336,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jUsuarioL;
     private javax.swing.JLabel loginLbl;
+    private javax.swing.JLabel loginLbl1;
     private javax.swing.JButton regrBtn;
     private javax.swing.JLabel rgrLbl;
     private javax.swing.JButton vlnBtn;

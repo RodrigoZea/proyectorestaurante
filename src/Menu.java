@@ -35,7 +35,16 @@ int HoraAb, HoraCe, decision;
         initComponents();
         decision = x;
         pasarHora(horaAb, horaCe);
-        numOrden = ordenesMenu.size()+1;
+        
+        if (ordenesMenu.size()>0) {
+        
+            numOrden = (ordenesMenu.get(ordenesMenu.size()-1).getOrden())+1;
+            
+        } else {
+            
+            numOrden = 1;
+            
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,11 +78,11 @@ int HoraAb, HoraCe, decision;
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
-        menuLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuLbl.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         menuLbl.setText("Menú");
 
         ordLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ordLbl.setText("Seleccione su orden:");
+        ordLbl.setText("Ingrese lo que desea ordenar");
 
         menuLbl1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         menuLbl1.setText("Comida: ");
@@ -141,7 +150,6 @@ int HoraAb, HoraCe, decision;
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(menuLbl1)
                             .addComponent(ordLbl)
-                            .addComponent(menuLbl)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(comidaCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
@@ -153,7 +161,8 @@ int HoraAb, HoraCe, decision;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ordLbl2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ordLbl3)))
+                                .addComponent(ordLbl3))
+                            .addComponent(menuLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(menuLbl2)
@@ -163,9 +172,9 @@ int HoraAb, HoraCe, decision;
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(54, 54, 54)
                 .addComponent(menuLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(ordLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -177,7 +186,7 @@ int HoraAb, HoraCe, decision;
                     .addComponent(comidaCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bebidaCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chipsCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ordLbl1)
                     .addComponent(ordLbl2)

@@ -70,7 +70,7 @@ public class Orden extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
-        OrdenLbl.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        OrdenLbl.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         OrdenLbl.setText("Orden");
 
         totalLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

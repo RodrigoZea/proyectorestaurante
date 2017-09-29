@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class Factura extends javax.swing.JFrame {
 Random rn = new Random();
+Calculos calculos = new Calculos();
 Login login = new Login();
 public static ArrayList<Ordenes> ordenesFactura = new ArrayList<Ordenes>();
 public static ArrayList<users> usuariosFactura = new ArrayList<users>();
@@ -66,7 +67,7 @@ private String hora;
         FacturaLbl.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         FacturaLbl.setText("Su pedido estará listo a las");
 
-        CompraLbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CompraLbl.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         CompraLbl.setText("¡Gracias por su compra!");
 
         HoraLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -113,22 +114,22 @@ private String hora;
                             .addComponent(fechaLbl)
                             .addComponent(acpBtn)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(CompraLbl))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(tarjetaLbl))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(efectivoLbl)))
+                        .addComponent(efectivoLbl))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(CompraLbl)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(26, 26, 26)
                 .addComponent(CompraLbl)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(FacturaLbl)
                     .addComponent(HoraLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,7 +145,7 @@ private String hora;
                 .addComponent(fechaLbl)
                 .addGap(30, 30, 30)
                 .addComponent(acpBtn)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,14 +166,15 @@ private String hora;
         //Si le da aceptar, que se cierre el programa porque ya se completó 
         JOptionPane.showMessageDialog(null, "¡Que tenga un buen día!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         this.setVisible(false);
-        login.setVisible(true);        
+        login.setVisible(true);                 
+        
     }//GEN-LAST:event_acpBtnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //Se pone un número de orden para el usuario, que es un random entre 1 y 1000
-        int numOrden = rn.nextInt((1000-1)+1)+1;
+        //int numOrden = rn.nextInt((1000-1)+1)+1;
         //El label toma el valor del random
-        numOrdenLbl.setText(numOrden + "");
+        numOrdenLbl.setText(ordenesFactura.get(ordenesFactura.size()-1).getOrden()+"");                
         
         //Se esconde lo necesario
         tarjetaLbl.setVisible(false);

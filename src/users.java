@@ -15,8 +15,8 @@ private String usuario, clave;
     
     /**
      * Crea un objeto user a partir de los parametros que le envia el usuario
-     * @param usuario
-     * @param clave
+     * @param usuario: El nombre de usuario
+     * @param clave: Un string de la clave
      */
     public users(String usuario, String clave){ 
         //Cuando se envía el parametro crearlo con lo que el usuario haya dicho
@@ -28,7 +28,7 @@ private String usuario, clave;
 
     /**
      * Consigue el nombre de usuario de la persona
-     * @return usuario
+     * @return usuario: El usuario de la perosna
      */
     public String getUsuario() {
         return usuario;
@@ -36,7 +36,7 @@ private String usuario, clave;
 
     /**
      * Permite configurar el nombre de usuario
-     * @param usuario
+     * @param usuario: El usuario a establecer
      */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
@@ -44,7 +44,7 @@ private String usuario, clave;
 
     /**
      * Consigue la contrasena de usuario de la persona
-     * @return clave
+     * @return clave: La clave de la cuenta
      */
     public String getClave() {
         return clave;
@@ -52,7 +52,7 @@ private String usuario, clave;
 
     /**
      * Permite configurar la contrasena del usuario
-     * @param clave
+     * @param clave: La clave a establecer
      */
     public void setClave(String clave) {
         this.clave = clave;

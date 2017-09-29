@@ -15,6 +15,7 @@ public class Calculos {
     
     private String user, pass;
     public static ArrayList<users> usuariosCalc = new ArrayList<>();
+    public int contador=1;
     
     public Calculos(){
          
@@ -394,7 +395,7 @@ public class Calculos {
               //La hora es correcta y se muestran las opciones de pago
               JOptionPane.showMessageDialog(null, "Hora ingresada correctamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
               espacio.disable();
-              verificar = true;
+              verificar = true;              
            }else{
              //Se muestra el error que el restaurante no está abierto a esa hora
             JOptionPane.showMessageDialog(null, "El restaurante no está abierto a esa hora", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -410,7 +411,7 @@ public class Calculos {
     }
     
     /**
-     * Despliega todas las ordenes en una TextArea
+     * Despliega todas las ordenes en una TextArea y en un combo box
      * @param lista
      * @param comboBox
      * @param restaurante
@@ -425,35 +426,58 @@ public class Calculos {
         for(Ordenes x:lista){
             
             if ((restaurante.equals("Go Green")) && (x.getRestaurante()==1)){
-                                  
-                comboBox.addItem(x.getOrden());
+                    
+                if (x.getDespachado()==false) {
+                    
+                    comboBox.addItem(x.getOrden());
+                    
+                }
+                
                 cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
-                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
+                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n" + "   " + "Despachado: " + x.isDespachado(x.getDespachado()) + "\n\n";
+                
                 
                 texto.setText(cadena);
                 
             } else if ((restaurante.equals("Bagel Bros")) && (x.getRestaurante()==2)) {
+                
+                if (x.getDespachado()==false) {
+                    
+                    comboBox.addItem(x.getOrden());
+                    
+                }
             
                 comboBox.addItem(x.getOrden());
-                cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
-                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
+                 cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
+                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n" + "   " + "Despachado: " + x.isDespachado(x.getDespachado()) + "\n\n";
                 
                 texto.setText(cadena);
                 
             } else if ((restaurante.equals("Gitanne")) && (x.getRestaurante()==3)) {
                 
-                comboBox.addItem(x.getOrden());
+                if (x.getDespachado()==false) {
+                    
+                    comboBox.addItem(x.getOrden());
+                    
+                }
+                
+                
                 cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
-                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
+                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n" + "   " + "Despachado: " + x.isDespachado(x.getDespachado()) + "\n\n";
+                
                 
                 texto.setText(cadena);
                 
             } else if ((restaurante.equals("Picnic")) && (x.getRestaurante()==4)) {
                 
-                //comboBox.addItem("Orden " + x.getOrden());
-                comboBox.addItem(x.getOrden());
-                cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
-                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n\n";
+                if (x.getDespachado()==false) {
+                    
+                    comboBox.addItem(x.getOrden());
+                    
+                }
+                 cadena = cadena + "No. Orden: " + x.getOrden() + "\n" + "   " + "Hora de entrega: " + x.getHora() + "\n" + "   " + "Comida: " + x.getComida() + "\n" + "   " +  "Bebida: " + x.getBebida() + "\n" + "   " + 
+                        "Chips: " + x.getChips() + "\n" + "   " + "Total a pagar: Q" + x.getTotal() + "\n" + "   " + "Despachado: " + x.isDespachado(x.getDespachado()) + "\n\n";
+                
                 
                 texto.setText(cadena);
                 
@@ -470,10 +494,15 @@ public class Calculos {
     public void eliminarOrden(ArrayList<Ordenes> lista, int orden){
         for(Ordenes x: lista){
             if(x.getOrden() == orden){
-                lista.remove(x);
+                //lista.remove(x);
+                x.setDespachado(true);
+                JOptionPane.showMessageDialog(null, "Orden despachada", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+
                 break;
             }
         }
+        
+        
     }
     
     
